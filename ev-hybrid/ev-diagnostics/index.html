@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EV Diagnostics Shenton Park Perth | Automotive Insight</title>
+  <meta name="description" content="EV diagnostic specialists in Shenton Park. Factory-level OEM tools across all major EV brands. We find the fault — not just the code.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root { --gold: #DCA54A; --gold-dark: #D09A40; --red: #C32620; --red-dark: #A5201B; --dark: #1A1A1A; --white: #FFFFFF; --off-white: #F5F4F0; --body: #333333; --muted: #888888; --border: #E0DED8; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; font-weight: 400; color: var(--body); background: var(--dark); -webkit-font-smoothing: antialiased; }
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; color: inherit; }
+    .btn { display: inline-block; font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; padding: 15px 30px; border: 2px solid transparent; cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s; white-space: nowrap; background: none; }
+    .btn-red { background: var(--red); color: var(--white); border-color: var(--red); }
+    .btn-red:hover { background: var(--red-dark); border-color: var(--red-dark); }
+    .btn-ghost-white { color: var(--white); border-color: rgba(255,255,255,0.4); }
+    .btn-ghost-white:hover { border-color: var(--white); }
+    .btn-gold { background: var(--gold); color: var(--dark); border-color: var(--gold); font-weight: 800; }
+    .btn-gold:hover { background: var(--gold-dark); border-color: var(--gold-dark); }
+    .nav { position: fixed; inset: 0 0 auto; z-index: 200; background: var(--dark); }
+    .nav-inner { max-width: 1440px; margin: 0 auto; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
+    .nav-logo img { height: 36px; }
+    .nav-links { display: flex; list-style: none; gap: 24px; align-items: center; }
+    .nav-links a { font-size: 9px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.5); transition: color 0.12s; }
+    .nav-links a:hover { color: var(--gold); }
+    .dd { position: relative; }
+    .dd > a::after { content: ''; display: inline-block; width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 4px solid currentColor; margin-left: 5px; vertical-align: middle; }
+    .dd-menu { display: none; position: absolute; top: calc(100% + 12px); left: 0; background: var(--dark); border-top: 2px solid var(--gold); min-width: 200px; padding: 4px 0; box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
+    .dd:hover .dd-menu { display: block; }
+    .dd-menu a { display: block; padding: 10px 20px; font-size: 9px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+    .dd-menu a:hover { color: var(--gold); }
+    .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--white); }
+    .mobile-nav { display: none; position: fixed; top: 64px; inset-inline: 0; background: var(--dark); z-index: 199; padding: 8px 0 24px; }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a { display: block; padding: 12px 32px; font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.45); border-bottom: 1px solid rgba(255,255,255,0.03); }
+    .mobile-nav a:hover { color: var(--white); }
+    .mobile-nav .btn { margin: 16px 32px 0; display: block; text-align: center; }
+    .field { margin-bottom: 2px; }
+    .field label { display: block; font-size: 8px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+    .field input, .field select, .field textarea { width: 100%; background: var(--off-white); border: none; border-bottom: 2px solid var(--border); padding: 13px 14px; font-family: 'Poppins', sans-serif; font-size: 13px; color: var(--body); outline: none; appearance: none; -webkit-appearance: none; transition: border-color 0.12s, background 0.12s; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-bottom-color: var(--gold); background: var(--white); }
+    .field input::placeholder, .field textarea::placeholder { color: rgba(0,0,0,0.2); }
+    .field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23999'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-color: var(--off-white); padding-right: 36px; color: rgba(0,0,0,0.4); }
+    .field select option { color: var(--body); }
+    .field textarea { resize: none; height: 80px; }
+    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-bottom: 2px; }
+    .form-submit { margin-top: 10px; }
+    .form-submit .btn { width: 100%; text-align: center; }
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 500; align-items: center; justify-content: center; padding: 24px; }
+    .modal-overlay.open { display: flex; }
+    .modal { background: var(--white); width: 100%; max-width: 520px; max-height: 90vh; overflow-y: auto; animation: mIn 0.16s ease; }
+    @keyframes mIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    .modal-head { background: var(--dark); padding: 20px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .modal-head h3 { font-size: 10px; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--white); }
+    .modal-x { background: none; border: none; color: rgba(255,255,255,0.4); font-size: 20px; cursor: pointer; line-height: 1; padding: 0; transition: color 0.12s; }
+    .modal-x:hover { color: var(--white); }
+    .modal-body { padding: 24px; }
+    .modal-body .field { margin-bottom: 8px; }
+    .modal-body .field-row .field { margin-bottom: 0; }
+    .modal-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 10px; }
+    .modal-phone-fallback { text-align: center; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--muted); }
+    .modal-phone-fallback a { color: var(--dark); font-weight: 700; text-decoration: underline; }
+    .book { background: var(--red); padding: 72px 48px; }
+    .book-inner { max-width: 1440px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
+    .book-text h2 { font-size: clamp(28px, 3.5vw, 52px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.05; color: var(--white); margin-bottom: 8px; }
+    .book-text p { font-size: 14px; color: rgba(255,255,255,0.6); }
+    .book-ctas { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .footer { background: var(--dark); padding: 56px 0 32px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .footer-grid { max-width: 1440px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; margin-bottom: 48px; }
+    .footer-brand img { height: 32px; margin-bottom: 16px; }
+    .footer-brand p { font-size: 12px; color: rgba(255,255,255,0.28); line-height: 1.7; max-width: 220px; }
+    .footer-col h5 { font-size: 8px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer-col ul a { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.3); transition: color 0.12s; }
+    .footer-col ul a:hover { color: var(--white); }
+    .footer-bottom { max-width: 1440px; margin: 0 auto; padding: 24px 48px 0; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    .footer-legal { font-size: 10px; color: rgba(255,255,255,0.16); }
+    .footer-social { display: flex; gap: 24px; }
+    .footer-social a { font-size: 10px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: rgba(255,255,255,0.25); transition: color 0.12s; }
+    .footer-social a:hover { color: var(--white); }
+    .page-hero { background: var(--dark); padding-top: 64px; position: relative; overflow: hidden; }
+    .page-hero-inner { max-width: 1440px; margin: 0 auto; padding: 72px 48px 80px; position: relative; z-index: 1; }
+    .page-hero-ghost { position: absolute; right: -0.05em; bottom: -0.15em; font-size: clamp(160px, 22vw, 320px); font-weight: 800; letter-spacing: -0.05em; line-height: 1; color: rgba(255,255,255,0.025); user-select: none; pointer-events: none; z-index: 0; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 32px; }
+    .breadcrumb a, .breadcrumb span { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb-sep { color: rgba(255,255,255,0.15); }
+    .breadcrumb .current { color: var(--gold); }
+    .page-kicker { font-size: 9px; font-weight: 700; letter-spacing: 0.20em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px; display: flex; align-items: center; gap: 14px; }
+    .page-kicker::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); flex-shrink: 0; }
+    .page-headline { font-size: clamp(44px, 7vw, 100px); font-weight: 800; letter-spacing: -0.04em; line-height: 0.93; color: var(--white); margin-bottom: 32px; }
+    .page-headline em { font-style: italic; color: var(--gold); }
+    .page-tagline { font-size: 17px; color: rgba(255,255,255,0.5); line-height: 1.75; max-width: 600px; margin-bottom: 36px; }
+    .page-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+    .ev-content { background: var(--dark); }
+    .ev-content-inner { max-width: 1440px; margin: 0 auto; padding: 80px 48px; }
+    .ev-ph-section { padding: 56px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .ev-ph-section:first-child { padding-top: 0; }
+    .ev-ph-section:last-child { border-bottom: none; }
+    .ev-ph-label { font-size: 8px; font-weight: 800; letter-spacing: 0.20em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+    .ev-ph-label::before { content: ''; display: block; width: 20px; height: 2px; background: var(--gold); }
+    .ev-ph-heading { font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; letter-spacing: -0.02em; color: var(--white); margin-bottom: 20px; line-height: 1.1; }
+    .ev-ph-body { font-size: 15px; color: rgba(255,255,255,0.4); line-height: 1.8; max-width: 680px; font-style: italic; }
+    .ev-ph-list { list-style: none; margin-top: 24px; border-top: 1px solid rgba(255,255,255,0.06); }
+    .ev-ph-list li { padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6); display: flex; align-items: baseline; gap: 14px; }
+    .ev-ph-list li::before { content: ''; display: block; width: 5px; height: 5px; background: var(--gold); flex-shrink: 0; position: relative; top: -1px; }
+    .ev-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid rgba(255,255,255,0.06); margin-top: 40px; }
+    .ev-grid-card { padding: 32px 28px; border-right: 1px solid rgba(255,255,255,0.06); }
+    .ev-grid-card:last-child { border-right: none; }
+    .ev-grid-card-num { font-size: 32px; font-weight: 800; color: var(--gold); letter-spacing: -0.04em; margin-bottom: 12px; line-height: 1; }
+    .ev-grid-card-title { font-size: 14px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+    .ev-grid-card-body { font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.7; font-style: italic; }
+    .makes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid rgba(255,255,255,0.06); margin-top: 40px; }
+    .makes-item { padding: 20px 24px; border-right: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.5); }
+    .makes-item:nth-child(3n) { border-right: none; }
+    @media (max-width: 1100px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .ev-grid-3 { grid-template-columns: 1fr 1fr; }
+      .ev-grid-card:nth-child(2) { border-right: none; }
+      .ev-grid-card:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.06); border-right: none; grid-column: 1 / -1; }
+      .makes-grid { grid-template-columns: 1fr 1fr; }
+      .makes-item:nth-child(3n) { border-right: 1px solid rgba(255,255,255,0.06); }
+      .makes-item:nth-child(even) { border-right: none; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: flex; }
+      .page-hero-inner { padding: 56px 24px 64px; }
+      .book { padding: 56px 24px; }
+      .book-inner { flex-direction: column; align-items: flex-start; }
+      .book-ctas { flex-direction: column; align-items: flex-start; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; }
+      .footer-bottom { padding: 24px 24px 0; }
+      .field-row { grid-template-columns: 1fr; }
+      .ev-content-inner { padding: 56px 24px; }
+      .ev-grid-3 { grid-template-columns: 1fr; }
+      .ev-grid-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
+      .makes-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modal-h">
+  <div class="modal">
+    <div class="modal-head">
+      <h3 id="modal-h">Request a booking</h3>
+      <button class="modal-x" id="modalClose" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+      <form action="https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID" method="POST" novalidate>
+        <div class="field-row">
+          <div class="field"><label for="m-name">Your name *</label><input type="text" id="m-name" name="name" placeholder="Full name" required autocomplete="name"></div>
+          <div class="field"><label for="m-phone">Phone *</label><input type="tel" id="m-phone" name="phone" placeholder="0400 000 000" required autocomplete="tel"></div>
+        </div>
+        <div class="field"><label for="m-email">Email *</label><input type="email" id="m-email" name="email" placeholder="you@email.com" required autocomplete="email"></div>
+        <div class="field-row">
+          <div class="field"><label for="m-rego">Registration</label><input type="text" id="m-rego" name="rego" placeholder="ABC123 (optional)" style="text-transform:uppercase"></div>
+          <div class="field"><label for="m-date">Preferred date *</label><input type="date" id="m-date" name="preferred_date" required></div>
+        </div>
+        <div class="field">
+          <label for="m-service">Service type *</label>
+          <select id="m-service" name="service" required>
+            <option value="" disabled selected>Select a service</option>
+            <option>European Car Service</option><option>Asian Car Service</option><option>Logbook Service</option>
+            <option>EV / Hybrid Service</option><option>Brakes &amp; Suspension</option><option>Diagnostics</option>
+            <option>Auto Electrical</option><option>Fleet Maintenance</option><option>DOT Inspection</option><option>Other</option>
+          </select>
+        </div>
+        <div class="field"><label for="m-notes">Anything we should know?</label><textarea id="m-notes" name="notes" placeholder="Issue, model year, relevant details…"></textarea></div>
+        <div class="form-submit"><button type="submit" class="btn btn-red">Request a booking</button></div>
+        <p class="modal-note">We'll confirm by phone or email within one business day.</p>
+        <p class="modal-phone-fallback">Prefer to call? <a href="tel:0482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo" aria-label="Automotive Insight">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+    </a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/about/">About</a></li>
+      <li class="dd">
+        <a href="/services/">Services</a>
+        <div class="dd-menu">
+          <a href="/european-cars/">European Cars</a>
+          <a href="/asian-cars/">Asian Cars</a>
+          <a href="/logbook-service/">Logbook Servicing</a>
+          <a href="/fleet-maintenance/">Fleet Maintenance</a>
+          <a href="/brakes-suspension/">Brakes &amp; Suspension</a>
+          <a href="/diagnostics/">Diagnostics</a>
+          <a href="/auto-electrical/">Auto Electrical</a>
+        </div>
+      </li>
+      <li class="dd">
+        <a href="/ev-hybrid/">EV &amp; Hybrid</a>
+        <div class="dd-menu">
+          <a href="/ev-hybrid/hybrid-servicing/">Hybrid Servicing</a>
+          <a href="/ev-hybrid/ev-charging/">EV Charging</a>
+          <a href="/ev-hybrid/ev-diagnostics/">EV Diagnostics</a>
+        </div>
+      </li>
+      <li><a href="/faqs/">FAQs</a></li>
+      <li><a href="/contact/">Contact</a></li>
+    </ul>
+    <button class="btn btn-red nav-cta" onclick="openModal()">Book a service</button>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="/">Home</a>
+    <a href="/about/">About</a>
+    <a href="/services/">Services</a>
+    <a href="/european-cars/" style="padding-left:44px;font-size:8px">European Cars</a>
+    <a href="/asian-cars/" style="padding-left:44px;font-size:8px">Asian Cars</a>
+    <a href="/logbook-service/" style="padding-left:44px;font-size:8px">Logbook Servicing</a>
+    <a href="/fleet-maintenance/" style="padding-left:44px;font-size:8px">Fleet Maintenance</a>
+    <a href="/ev-hybrid/">EV &amp; Hybrid</a>
+    <a href="/faqs/">FAQs</a>
+    <a href="/contact/">Contact</a>
+    <button class="btn btn-red" onclick="openModal();closeMobileNav()">Book a service</button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="/ev-hybrid/">EV &amp; Hybrid</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="current">EV Diagnostics</span>
+    </nav>
+    <p class="page-kicker">Factory-level OEM diagnostics</p>
+    <h1 class="page-headline">We find the fault.<br><em>Not just the code.</em></h1>
+    <p class="page-tagline">Most workshops read the warning light and reset it. We diagnose what caused it — using the same tools the manufacturer uses.</p>
+    <div class="page-hero-ctas">
+      <button class="btn btn-gold" onclick="openModal()">Book a diagnostic</button>
+      <a href="tel:0482097182" class="btn btn-ghost-white">0482 097 182</a>
+    </div>
+  </div>
+  <div class="page-hero-ghost" aria-hidden="true">DX</div>
+</section>
+
+<!-- EV CONTENT -->
+<section class="ev-content" aria-label="EV diagnostics details">
+  <div class="ev-content-inner">
+
+    <div class="ev-ph-section">
+      <p class="ev-ph-label">Our diagnostic process</p>
+      <h2 class="ev-ph-heading">Step-by-step, no shortcuts.</h2>
+      <div class="ev-grid-3">
+        <div class="ev-grid-card">
+          <div class="ev-grid-card-num">01</div>
+          <div class="ev-grid-card-title">Connect</div>
+          <div class="ev-grid-card-body">We connect factory-level OEM diagnostic equipment to your vehicle and pull the full fault history — not just the current codes.</div>
+        </div>
+        <div class="ev-grid-card">
+          <div class="ev-grid-card-num">02</div>
+          <div class="ev-grid-card-title">Analyse</div>
+          <div class="ev-grid-card-body">We cross-reference fault codes against live sensor data and vehicle history to identify the root cause — not just the symptom.</div>
+        </div>
+        <div class="ev-grid-card">
+          <div class="ev-grid-card-num">03</div>
+          <div class="ev-grid-card-title">Report back</div>
+          <div class="ev-grid-card-body">We call you before touching anything. You get a clear explanation of what's wrong, what it'll cost, and what happens if you leave it.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ev-ph-section">
+      <p class="ev-ph-label">Our equipment</p>
+      <h2 class="ev-ph-heading">OEM tools, independent prices.</h2>
+      <p class="ev-ph-body">We invested in factory-level diagnostic hardware because scan-tool guessing is expensive for everyone — the right tool finds the right fault first time. That means less time in the workshop and no repeat visits chasing the same problem.</p>
+      <ul class="ev-ph-list">
+        <li>Factory OEM software across major EV platforms</li>
+        <li>Full fault history extraction, not just live codes</li>
+        <li>High-voltage system fault analysis</li>
+        <li>Battery management system diagnostics</li>
+        <li>Inverter and motor control diagnostics</li>
+      </ul>
+    </div>
+
+    <div class="ev-ph-section">
+      <p class="ev-ph-label">Brands we cover</p>
+      <h2 class="ev-ph-heading">All major EV brands.</h2>
+      <p class="ev-ph-body">Our OEM diagnostic toolset covers the most common EVs on Perth roads, so we can read deep system data on your vehicle — not just generic error codes.</p>
+      <div class="makes-grid">
+        <div class="makes-item">Tesla</div>
+        <div class="makes-item">BYD</div>
+        <div class="makes-item">Hyundai</div>
+        <div class="makes-item">Kia</div>
+        <div class="makes-item">MG</div>
+        <div class="makes-item">Volvo</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BOOK CTA -->
+<section class="book" aria-label="Book a service">
+  <div class="book-inner">
+    <div class="book-text">
+      <h2>Book a time.<br>We'll tell you straight.</h2>
+      <p>Let us know your rego and what's going on. No obligation until you've heard the diagnosis.</p>
+    </div>
+    <div class="book-ctas">
+      <button class="btn btn-gold" onclick="openModal()">Book a service</button>
+      <a href="tel:0482097182" class="btn btn-ghost-white">0482 097 182</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+      <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. You talk to the mechanic, not an advisor.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="/european-cars/">European Cars</a></li>
+        <li><a href="/asian-cars/">Asian Cars</a></li>
+        <li><a href="/logbook-service/">Logbook Servicing</a></li>
+        <li><a href="/fleet-maintenance/">Fleet Maintenance</a></li>
+        <li><a href="/brakes-suspension/">Brakes &amp; Suspension</a></li>
+        <li><a href="/diagnostics/">Diagnostics</a></li>
+        <li><a href="/auto-electrical/">Auto Electrical</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>EV &amp; Hybrid</h5>
+      <ul>
+        <li><a href="/ev-hybrid/">Overview</a></li>
+        <li><a href="/ev-hybrid/hybrid-servicing/">Hybrid Servicing</a></li>
+        <li><a href="/ev-hybrid/ev-charging/">EV Charging</a></li>
+        <li><a href="/ev-hybrid/ev-diagnostics/">EV Diagnostics</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/reviews/">Reviews</a></li>
+        <li><a href="/faqs/">FAQs</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-legal">© 2026 Automotive Insight &nbsp;·&nbsp; 206A Stubbs Terrace, Shenton Park WA 6008</span>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/automotive.insight.perth" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.instagram.com/automotive_insight_perth/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const overlay = document.getElementById('bookingModal');
+  const closeBtn = document.getElementById('modalClose');
+  function openModal() { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(() => { const el = overlay.querySelector('input,select,textarea'); if (el) el.focus(); }, 60); }
+  function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  const toggle = document.getElementById('navToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  function closeMobileNav() { mobileNav.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+  toggle.addEventListener('click', () => { const open = mobileNav.classList.toggle('open'); toggle.setAttribute('aria-expanded', String(open)); });
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => { nav.style.boxShadow = scrollY > 20 ? '0 4px 32px rgba(0,0,0,0.3)' : ''; }, { passive: true });
+  const today = new Date().toISOString().split('T')[0];
+  document.querySelectorAll('input[type=date]').forEach(d => d.min = today);
+</script>
+
+</body>
+</html>
