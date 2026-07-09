@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <style>
     :root {
       --gold:      #DCA54A;
@@ -46,6 +48,7 @@
     .dd > a::after { content: ''; display: inline-block; width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-top: 4px solid currentColor; margin-left: 5px; vertical-align: middle; }
     .dd-menu { display: none; position: absolute; top: calc(100% + 12px); left: 0; background: var(--dark); border-top: 2px solid var(--gold); min-width: 200px; padding: 4px 0; box-shadow: 0 16px 40px rgba(0,0,0,0.5); }
     .dd:hover .dd-menu { display: block; }
+    .dd-menu::before { content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
     .dd-menu a { display: block; padding: 10px 20px; font-size: 9px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
     .dd-menu a:hover { color: var(--gold); }
     .nav-toggle { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
@@ -165,28 +168,27 @@
         <button class="modal-x" id="modalClose" aria-label="Close">×</button>
       </div>
       <div class="modal-body">
-        <form action="https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID" method="POST" novalidate>
+        <form id="bookingForm" novalidate>
           <div class="field-row">
-            <div class="field"><label for="m-name">Your name *</label><input type="text" id="m-name" name="name" placeholder="Full name" required autocomplete="name"></div>
-            <div class="field"><label for="m-phone">Phone *</label><input type="tel" id="m-phone" name="phone" placeholder="0400 000 000" required autocomplete="tel"></div>
+            <div class="field"><label for="m-name">Your name *</label><input type="text" id="m-name" placeholder="Full name" required autocomplete="name"></div>
+            <div class="field"><label for="m-phone">Phone *</label><input type="tel" id="m-phone" placeholder="0400 000 000" required autocomplete="tel"></div>
           </div>
-          <div class="field"><label for="m-email">Email *</label><input type="email" id="m-email" name="email" placeholder="you@email.com" required autocomplete="email"></div>
+          <div class="field"><label for="m-email">Email *</label><input type="email" id="m-email" placeholder="you@email.com" required autocomplete="email"></div>
           <div class="field-row">
-            <div class="field"><label for="m-rego">Registration</label><input type="text" id="m-rego" name="rego" placeholder="ABC123 (optional)" style="text-transform:uppercase"></div>
-            <div class="field"><label for="m-date">Preferred date *</label><input type="date" id="m-date" name="preferred_date" required></div>
+            <div class="field"><label for="m-make">Vehicle make *</label><input type="text" id="m-make" placeholder="e.g. BMW" required></div>
+            <div class="field"><label for="m-model">Model *</label><input type="text" id="m-model" placeholder="e.g. 320i" required></div>
           </div>
-          <div class="field">
-            <label for="m-service">Service type *</label>
-            <select id="m-service" name="service" required>
-              <option value="" disabled selected>Select a service</option>
-              <option>European Car Service</option><option>Asian Car Service</option><option>Logbook Service</option>
-              <option>EV / Hybrid Service</option><option>Brakes &amp; Suspension</option><option>Diagnostics</option>
-              <option>Auto Electrical</option><option>Fleet Maintenance</option><option>DOT Inspection</option><option>Other</option>
-            </select>
+          <div class="field-row">
+            <div class="field"><label for="m-year">Year *</label><input type="text" id="m-year" placeholder="e.g. 2019" required></div>
+            <div class="field"><label for="m-rego">Registration</label><input type="text" id="m-rego" placeholder="ABC123 (optional)" style="text-transform:uppercase"></div>
           </div>
-          <div class="field"><label for="m-notes">Anything we should know?</label><textarea id="m-notes" name="notes" placeholder="Electrical fault, warning light, intermittent issue…"></textarea></div>
-          <div class="form-submit"><button type="submit" class="btn btn-red">Request a booking</button></div>
-          <p class="modal-note">We'll confirm by phone or email within one business day.</p>
+          <div class="field-row">
+            <div class="field"><label for="m-service">Service type *</label><select id="m-service" required><option value="" disabled selected>Select a service</option><option>European Car Service</option><option>Asian Car Service</option><option>Logbook Service</option><option>EV / Hybrid Service</option><option>Brakes &amp; Suspension</option><option>Diagnostics</option><option>Auto Electrical</option><option>Fleet Maintenance</option><option>DOT Inspection</option><option>Other</option></select></div>
+            <div class="field"><label for="m-date">Preferred date *</label><input type="date" id="m-date" required></div>
+          </div>
+          <div class="form-submit"><button type="submit" class="btn btn-red" id="m-submit">Request a booking</button></div>
+          <p class="modal-note" id="m-success" style="display:none;color:#2a7a2a;font-weight:700;">Booking request received — we'll confirm within one business day.</p>
+          <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on 0482 097 182.</p>
           <p class="modal-phone-fallback">Prefer to call? <a href="tel:0482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
         </form>
       </div>
@@ -238,8 +240,15 @@
       <a href="/asian-cars/" style="padding-left:44px;font-size:8px">Asian Cars</a>
       <a href="/logbook-service/" style="padding-left:44px;font-size:8px">Logbook Servicing</a>
       <a href="/fleet-maintenance/" style="padding-left:44px;font-size:8px">Fleet Maintenance</a>
+      <a href="/brakes-suspension/" style="padding-left:44px;font-size:8px">Brakes &amp; Suspension</a>
+      <a href="/diagnostics/" style="padding-left:44px;font-size:8px">Diagnostics</a>
+      <a href="/auto-electrical/" style="padding-left:44px;font-size:8px">Auto Electrical</a>
       <a href="/ev-hybrid/">EV &amp; Hybrid</a>
+      <a href="/ev-hybrid/hybrid-servicing/" style="padding-left:44px;font-size:8px">Hybrid Servicing</a>
+      <a href="/ev-hybrid/ev-charging/" style="padding-left:44px;font-size:8px">EV Charging</a>
+      <a href="/ev-hybrid/ev-diagnostics/" style="padding-left:44px;font-size:8px">EV Diagnostics</a>
       <a href="/faqs/">FAQs</a>
+      <a href="/reviews/">Reviews</a>
       <a href="/contact/">Contact</a>
       <button class="btn btn-red" onclick="openModal();closeMobileNav()">Book a service</button>
     </div>
@@ -370,10 +379,25 @@
     </div>
   </footer>
 
-  <script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    const _sb = supabase.createClient('https://prqbvbhuwfpdkkrkqizj.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBycWJ2Ymh1d2ZwZGtrcmtxaXpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5OTA1MzQsImV4cCI6MjA5MjU2NjUzNH0.Io5IHsyp23yThoyZD7Ccs4UygTtwx_0rIRTlnS3pYZQ');
+    const _p = new URLSearchParams(window.location.search);
+    const _utm = { utm_source: _p.get('utm_source')||'', utm_medium: _p.get('utm_medium')||'', utm_campaign: _p.get('utm_campaign')||'', utm_content: _p.get('utm_content')||'', utm_term: _p.get('utm_term')||'', gclid: _p.get('gclid')||'', landing_page: window.location.href };
+    document.getElementById('bookingForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const g = id => (document.getElementById(id)||{}).value||'';
+      const btn = document.getElementById('m-submit');
+      btn.disabled = true; btn.textContent = 'Sending…';
+      document.getElementById('m-success').style.display = 'none';
+      document.getElementById('m-error').style.display = 'none';
+      const { error } = await _sb.from('ai_bookings').insert({ customer_name: g('m-name'), customer_phone: g('m-phone'), customer_email: g('m-email'), vehicle_make: g('m-make'), vehicle_model: g('m-model'), vehicle_year: g('m-year'), vehicle_registration: g('m-rego'), service_type: g('m-service'), preferred_date: g('m-date'), ..._utm });
+      if (error) { btn.disabled = false; btn.textContent = 'Request a booking'; document.getElementById('m-error').style.display = 'block'; }
+      else { e.target.reset(); btn.textContent = 'Sent!'; document.getElementById('m-success').style.display = 'block'; setTimeout(closeModal, 3000); }
+    });
     const overlay = document.getElementById('bookingModal');
     const closeBtn = document.getElementById('modalClose');
-    function openModal() { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(() => { const el = overlay.querySelector('input,select,textarea'); if (el) el.focus(); }, 60); }
+    function openModal() { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; setTimeout(() => { const el = overlay.querySelector('input,select'); if (el) el.focus(); }, 60); }
     function closeModal() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
     closeBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });

@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,800&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
   <style>
     :root {
@@ -121,6 +123,7 @@
       box-shadow: 0 16px 40px rgba(0,0,0,0.5);
     }
     .dd:hover .dd-menu { display: block; }
+    .dd-menu::before { content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
     .dd-menu a {
       display: block;
       padding: 10px 20px;
@@ -1503,55 +1506,68 @@
       <button class="modal-x" id="modalClose" aria-label="Close">×</button>
     </div>
     <div class="modal-body">
-      <form action="https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID" method="POST" novalidate>
+      <form id="bookingForm" novalidate>
         <div class="field-row">
           <div class="field">
             <label for="m-name">Your name *</label>
-            <input type="text" id="m-name" name="name" placeholder="Full name" required autocomplete="name">
+            <input type="text" id="m-name" placeholder="Full name" required autocomplete="name">
           </div>
           <div class="field">
             <label for="m-phone">Phone *</label>
-            <input type="tel" id="m-phone" name="phone" placeholder="0400 000 000" required autocomplete="tel">
+            <input type="tel" id="m-phone" placeholder="0400 000 000" required autocomplete="tel">
           </div>
         </div>
         <div class="field">
           <label for="m-email">Email *</label>
-          <input type="email" id="m-email" name="email" placeholder="you@email.com" required autocomplete="email">
+          <input type="email" id="m-email" placeholder="you@email.com" required autocomplete="email">
         </div>
         <div class="field-row">
           <div class="field">
+            <label for="m-make">Vehicle make *</label>
+            <input type="text" id="m-make" placeholder="e.g. BMW" required>
+          </div>
+          <div class="field">
+            <label for="m-model">Model *</label>
+            <input type="text" id="m-model" placeholder="e.g. 320i" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="m-year">Year *</label>
+            <input type="text" id="m-year" placeholder="e.g. 2019" required>
+          </div>
+          <div class="field">
             <label for="m-rego">Registration</label>
-            <input type="text" id="m-rego" name="rego" placeholder="ABC123 (optional)" style="text-transform:uppercase">
+            <input type="text" id="m-rego" placeholder="ABC123 (optional)" style="text-transform:uppercase">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="m-service">Service type *</label>
+            <select id="m-service" required>
+              <option value="" disabled selected>Select a service</option>
+              <option>European Car Service</option>
+              <option>Asian Car Service</option>
+              <option>Logbook Service</option>
+              <option>EV / Hybrid Service</option>
+              <option>Brakes &amp; Suspension</option>
+              <option>Diagnostics</option>
+              <option>Auto Electrical</option>
+              <option>Fleet Maintenance</option>
+              <option>DOT Inspection</option>
+              <option>Other</option>
+            </select>
           </div>
           <div class="field">
             <label for="m-date">Preferred date *</label>
-            <input type="date" id="m-date" name="preferred_date" required>
+            <input type="date" id="m-date" required>
           </div>
         </div>
-        <div class="field">
-          <label for="m-service">Service type *</label>
-          <select id="m-service" name="service" required>
-            <option value="" disabled selected>Select a service</option>
-            <option>European Car Service</option>
-            <option>Asian Car Service</option>
-            <option>Logbook Service</option>
-            <option>EV / Hybrid Service</option>
-            <option>Brakes &amp; Suspension</option>
-            <option>Diagnostics</option>
-            <option>Auto Electrical</option>
-            <option>Fleet Maintenance</option>
-            <option>DOT Inspection</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="m-notes">Anything we should know?</label>
-          <textarea id="m-notes" name="notes" placeholder="Issue, model year, relevant details…"></textarea>
-        </div>
         <div class="form-submit">
-          <button type="submit" class="btn btn-red">Request a booking</button>
+          <button type="submit" class="btn btn-red" id="m-submit">Request a booking</button>
         </div>
-        <p class="modal-note">We'll confirm by phone or email within one business day.</p>
+        <p class="modal-note" id="m-success" style="display:none;color:#2a7a2a;font-weight:700;">Booking request received — we'll confirm within one business day.</p>
+        <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on 0482 097 182.</p>
         <p class="modal-phone-fallback">Prefer to call? <a href="tel:0482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
       </form>
     </div>
@@ -1604,8 +1620,15 @@
     <a href="/asian-cars/" style="padding-left:44px;font-size:8px">Asian Cars</a>
     <a href="/logbook-service/" style="padding-left:44px;font-size:8px">Logbook Servicing</a>
     <a href="/fleet-maintenance/" style="padding-left:44px;font-size:8px">Fleet Maintenance</a>
+    <a href="/brakes-suspension/" style="padding-left:44px;font-size:8px">Brakes &amp; Suspension</a>
+    <a href="/diagnostics/" style="padding-left:44px;font-size:8px">Diagnostics</a>
+    <a href="/auto-electrical/" style="padding-left:44px;font-size:8px">Auto Electrical</a>
     <a href="/ev-hybrid/">EV &amp; Hybrid</a>
+    <a href="/ev-hybrid/hybrid-servicing/" style="padding-left:44px;font-size:8px">Hybrid Servicing</a>
+    <a href="/ev-hybrid/ev-charging/" style="padding-left:44px;font-size:8px">EV Charging</a>
+    <a href="/ev-hybrid/ev-diagnostics/" style="padding-left:44px;font-size:8px">EV Diagnostics</a>
     <a href="/faqs/">FAQs</a>
+    <a href="/reviews/">Reviews</a>
     <a href="/contact/">Contact</a>
     <button class="btn btn-red" onclick="openModal();closeMobileNav()">Book a service</button>
   </div>
@@ -1649,7 +1672,15 @@
 
   <!-- Photo — absolutely placed, NOT a column, diagonal left edge -->
   <div class="hero-photo" aria-hidden="true">
-    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/Mechanic-with-Clip-Board.jpg" alt="Automotive Insight mechanic, Shenton Park">
+    <!-- Replace src with workshop exterior or in-workshop shot -->
+    <!-- <img src="hero.jpg" alt="Automotive Insight workshop, Shenton Park"> -->
+    <div class="img-ph">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+        <circle cx="12" cy="13" r="4"/>
+      </svg>
+      <span>Workshop photo</span>
+    </div>
   </div>
 
 </section>
@@ -1824,9 +1855,16 @@
     </div>
   </div>
 
-  <!-- Sticky image column -->
+  <!-- Sticky image column — replace src with mechanic/workshop photo -->
   <div class="services-img-col" aria-hidden="true">
-    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Audi-Q7-FrontB.jpg" alt="European car at Automotive Insight">
+    <!-- <img src="services-mechanic.jpg" alt="Mechanic working on European car"> -->
+    <div class="img-ph">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+        <circle cx="12" cy="13" r="4"/>
+      </svg>
+      <span>Mechanic at work</span>
+    </div>
   </div>
 
 </section>
@@ -1865,7 +1903,14 @@
 
   <!-- Full-width photo strip at the bottom -->
   <div class="ev-photo-strip" aria-hidden="true">
-    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/hybrid-rav-4-3-1.jpg" alt="Hybrid RAV4 at Automotive Insight">
+    <!-- Replace with EV workshop photo when available -->
+    <div class="ev-photo-placeholder">
+      <svg class="photo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+        <circle cx="12" cy="13" r="4"/>
+      </svg>
+      <span class="photo-label">EV / Hybrid workshop photo</span>
+    </div>
   </div>
 
 </section>
@@ -1905,7 +1950,14 @@
 
     <!-- Workshop photo — right column -->
     <div class="about-photo-zone" aria-label="Workshop photo">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/bmw-1.jpg" alt="BMW at Automotive Insight workshop">
+      <!-- <img src="about-workshop.jpg" alt="Automotive Insight workshop, Shenton Park"> -->
+      <div class="img-ph">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+          <polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        <span>Workshop photo</span>
+      </div>
       <div class="about-address-bar">
         <div class="al">Our location</div>
         <address>206A Stubbs Terrace, Shenton Park WA 6008</address>
@@ -1922,17 +1974,38 @@
   <div class="gallery-inner">
 
     <div class="gallery-photo">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Rav4-Hybbrid-Service-1.jpg" alt="Hybrid service at Automotive Insight">
+      <!-- <img src="gallery-workshop.jpg" alt="Workshop interior"> -->
+      <div class="ev-photo-placeholder">
+        <svg class="photo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="photo-label">Workshop interior</span>
+      </div>
       <div class="gallery-caption"><span>Inside the workshop</span></div>
     </div>
 
     <div class="gallery-photo">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/volkswagen_crop.jpg" alt="Volkswagen at Automotive Insight">
+      <!-- <img src="gallery-european.jpg" alt="European car on lift"> -->
+      <div class="ev-photo-placeholder">
+        <svg class="photo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="photo-label">European car on hoist</span>
+      </div>
       <div class="gallery-caption"><span>European car specialist</span></div>
     </div>
 
     <div class="gallery-photo">
-      <img src="https://services.automotiveinsight.com.au/images/Auto-insight-Team.jpg" alt="Automotive Insight team">
+      <!-- <img src="gallery-team.jpg" alt="Automotive Insight team"> -->
+      <div class="ev-photo-placeholder">
+        <svg class="photo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+        <span class="photo-label">Team or detail shot</span>
+      </div>
       <div class="gallery-caption"><span>The team at Automotive Insight</span></div>
     </div>
 
@@ -2022,55 +2095,68 @@
       <p class="form-title">Request a booking</p>
       <p class="form-sub">Fill in the form and we'll confirm within one business day.</p>
 
-      <form action="https://formspree.io/f/REPLACE_WITH_FORMSPREE_ID" method="POST" novalidate>
+      <form id="contactForm" novalidate>
         <div class="field-row">
           <div class="field">
             <label for="c-name">Your name *</label>
-            <input type="text" id="c-name" name="name" placeholder="Full name" required autocomplete="name">
+            <input type="text" id="c-name" placeholder="Full name" required autocomplete="name">
           </div>
           <div class="field">
             <label for="c-phone">Phone *</label>
-            <input type="tel" id="c-phone" name="phone" placeholder="0400 000 000" required autocomplete="tel">
+            <input type="tel" id="c-phone" placeholder="0400 000 000" required autocomplete="tel">
           </div>
         </div>
         <div class="field">
           <label for="c-email">Email address *</label>
-          <input type="email" id="c-email" name="email" placeholder="you@email.com" required autocomplete="email">
+          <input type="email" id="c-email" placeholder="you@email.com" required autocomplete="email">
         </div>
         <div class="field-row">
           <div class="field">
-            <label for="c-rego">Vehicle rego</label>
-            <input type="text" id="c-rego" name="rego" placeholder="ABC123 (optional)" style="text-transform:uppercase">
+            <label for="c-make">Vehicle make *</label>
+            <input type="text" id="c-make" placeholder="e.g. BMW" required>
+          </div>
+          <div class="field">
+            <label for="c-model">Model *</label>
+            <input type="text" id="c-model" placeholder="e.g. 320i" required>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="c-year">Year *</label>
+            <input type="text" id="c-year" placeholder="e.g. 2019" required>
+          </div>
+          <div class="field">
+            <label for="c-rego">Registration</label>
+            <input type="text" id="c-rego" placeholder="ABC123 (optional)" style="text-transform:uppercase">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="c-service">Service type *</label>
+            <select id="c-service" required>
+              <option value="" disabled selected>Select a service</option>
+              <option>European Car Service</option>
+              <option>Asian Car Service</option>
+              <option>Logbook Service</option>
+              <option>EV / Hybrid Service</option>
+              <option>Brakes &amp; Suspension</option>
+              <option>Diagnostics</option>
+              <option>Auto Electrical</option>
+              <option>Fleet Maintenance</option>
+              <option>DOT Inspection</option>
+              <option>Other</option>
+            </select>
           </div>
           <div class="field">
             <label for="c-date">Preferred date *</label>
-            <input type="date" id="c-date" name="preferred_date" required>
+            <input type="date" id="c-date" required>
           </div>
         </div>
-        <div class="field">
-          <label for="c-service">Service type *</label>
-          <select id="c-service" name="service" required>
-            <option value="" disabled selected>Select a service</option>
-            <option>European Car Service</option>
-            <option>Asian Car Service</option>
-            <option>Logbook Service</option>
-            <option>EV / Hybrid Service</option>
-            <option>Brakes &amp; Suspension</option>
-            <option>Diagnostics</option>
-            <option>Auto Electrical</option>
-            <option>Fleet Maintenance</option>
-            <option>DOT Inspection</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="c-notes">Anything else we should know?</label>
-          <textarea id="c-notes" name="notes" placeholder="Describe the issue, model year, or relevant details…"></textarea>
-        </div>
         <div class="form-submit">
-          <button type="submit" class="btn btn-red">Request a booking</button>
+          <button type="submit" class="btn btn-red" id="c-submit">Request a booking</button>
         </div>
-        <p class="modal-note" style="margin-top:10px;">We'll confirm by phone or email within one business day.</p>
+        <p class="modal-note" id="c-success" style="display:none;color:#2a7a2a;font-weight:700;margin-top:10px;">Booking request received — we'll confirm within one business day.</p>
+        <p class="modal-note" id="c-error" style="display:none;color:var(--red);margin-top:10px;">Something went wrong. Please call us on 0482 097 182.</p>
       </form>
     </div>
 
@@ -2127,7 +2213,30 @@
 </footer>
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
+  /* ── Supabase ── */
+  const _sb = supabase.createClient(
+    'https://prqbvbhuwfpdkkrkqizj.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBycWJ2Ymh1d2ZwZGtrcmtxaXpqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY5OTA1MzQsImV4cCI6MjA5MjU2NjUzNH0.Io5IHsyp23yThoyZD7Ccs4UygTtwx_0rIRTlnS3pYZQ'
+  );
+  const _p = new URLSearchParams(window.location.search);
+  const _utm = { utm_source: _p.get('utm_source')||'', utm_medium: _p.get('utm_medium')||'', utm_campaign: _p.get('utm_campaign')||'', utm_content: _p.get('utm_content')||'', utm_term: _p.get('utm_term')||'', gclid: _p.get('gclid')||'', landing_page: window.location.href };
+
+  async function _submitToSupabase(formEl, prefix, closeAfter) {
+    const g = id => (document.getElementById(id)||{}).value||'';
+    const btn = document.getElementById(prefix+'submit');
+    btn.disabled = true; btn.textContent = 'Sending…';
+    document.getElementById(prefix+'success').style.display = 'none';
+    document.getElementById(prefix+'error').style.display = 'none';
+    const { error } = await _sb.from('ai_bookings').insert({ customer_name: g(prefix+'name'), customer_phone: g(prefix+'phone'), customer_email: g(prefix+'email'), vehicle_make: g(prefix+'make'), vehicle_model: g(prefix+'model'), vehicle_year: g(prefix+'year'), vehicle_registration: g(prefix+'rego'), service_type: g(prefix+'service'), preferred_date: g(prefix+'date'), ..._utm });
+    if (error) { btn.disabled = false; btn.textContent = 'Request a booking'; document.getElementById(prefix+'error').style.display = 'block'; }
+    else { formEl.reset(); btn.textContent = 'Sent!'; document.getElementById(prefix+'success').style.display = 'block'; if (closeAfter) setTimeout(closeModal, 3000); }
+  }
+
+  document.getElementById('bookingForm').addEventListener('submit', e => { e.preventDefault(); _submitToSupabase(e.target, 'm-', true); });
+  document.getElementById('contactForm').addEventListener('submit', e => { e.preventDefault(); _submitToSupabase(e.target, 'c-', false); });
+
   /* Modal */
   const overlay  = document.getElementById('bookingModal');
   const closeBtn = document.getElementById('modalClose');
@@ -2136,7 +2245,7 @@
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
     setTimeout(() => {
-      const el = overlay.querySelector('input,select,textarea');
+      const el = overlay.querySelector('input,select');
       if (el) el.focus();
     }, 60);
   }
