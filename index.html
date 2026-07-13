@@ -92,11 +92,11 @@
       align-items: center;
     }
     .nav-links a {
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.13em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
+      color: var(--white);
       transition: color 0.12s;
     }
     .nav-links a:hover { color: var(--gold); }
@@ -124,14 +124,54 @@
     }
     .dd:hover .dd-menu { display: block; }
     .dd-menu::before { content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
-    .dd-menu a {
+    .mega-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 12px);
+      left: -24px;
+      background: var(--dark);
+      border-top: 2px solid var(--gold);
+      width: 480px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+      flex-direction: row;
+    }
+    .mega-menu::before { content: ''; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
+    .dd:hover .mega-menu { display: flex; }
+    .mega-links { flex: 1; padding: 8px 0; }
+    .mega-links a {
       display: block;
-      padding: 10px 20px;
-      font-size: 9px;
+      padding: 10px 24px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.10em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
+      color: rgba(255,255,255,0.85);
+      transition: color 0.12s;
+    }
+    .mega-links a:hover { color: var(--gold); }
+    .mega-img {
+      width: 160px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .mega-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.75; }
+    .nav-phone {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      color: var(--white);
+      white-space: nowrap;
+      transition: color 0.12s;
+    }
+    .nav-phone:hover { color: var(--gold); }
+    .dd-menu a {
+      display: block;
+      padding: 10px 20px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
     }
     .dd-menu a:hover { color: var(--gold); }
     .nav-toggle {
@@ -157,21 +197,21 @@
     .mobile-nav a {
       display: block;
       padding: 12px 32px;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.45);
-      border-bottom: 1px solid rgba(255,255,255,0.03);
+      color: rgba(255,255,255,0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
     .mobile-nav a:hover { color: var(--white); }
     .mobile-nav .btn { margin: 16px 32px 0; display: block; text-align: center; }
 
 
     /* ════════════════════════════════════════
-       HERO — Editorial composition, no grid.
+       HERO, Editorial composition, no grid.
        Headline dominates left. Photo is
-       absolutely placed with a diagonal cut —
+       absolutely placed with a diagonal cut ,
        NOT a column. Inspired by HH: elements
        placed on a canvas, not slotted into boxes.
     ════════════════════════════════════════ */
@@ -185,7 +225,7 @@
       flex-direction: column;
     }
 
-    /* Ghost "30" behind the headline — typographic texture */
+    /* Ghost "30" behind the headline, typographic texture */
     .hero-ghost {
       position: absolute;
       left: -0.04em;
@@ -202,7 +242,7 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    /* Text content — sits in the left 58%, no column border */
+    /* Text content, sits in the left 58%, no column border */
     .hero-content {
       position: relative;
       z-index: 2;
@@ -214,34 +254,42 @@
       flex: 1;
     }
 
-    .hero-kicker {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.22em;
+    .hero-location {
+      font-size: clamp(28px, 4vw, 52px);
+      font-weight: 800;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 40px;
+      color: var(--dark);
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
     }
-    .hero-kicker::before {
+    .hero-location::before {
       content: '';
       display: block;
       width: 28px;
-      height: 2px;
+      height: 3px;
       background: var(--gold);
       flex-shrink: 0;
     }
+    .hero-kicker {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
 
-    /* LARGE headline — owns the space */
+    /* LARGE headline, owns the space */
     .hero-headline {
-      font-size: clamp(52px, 8.2vw, 124px);
-      font-weight: 800;
-      letter-spacing: -0.04em;
-      line-height: 0.9;
+      font-size: clamp(32px, 4.2vw, 64px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
       color: var(--dark);
-      margin-bottom: 56px;
+      margin-bottom: 48px;
     }
     .hero-headline em {
       font-style: italic;
@@ -271,10 +319,10 @@
       display: inline-block;
     }
 
-    /* Photo — ABSOLUTELY positioned, NOT a column.
+    /* Photo, ABSOLUTELY positioned, NOT a column.
        Diagonal left edge (clip-path) is the key move:
        the image pours in from the right rather than
-       sitting in a box. Height is ~80% — doesn't fill
+       sitting in a box. Height is ~80%, doesn't fill
        the section, leaving white space below = deliberate. */
     .hero-photo {
       position: absolute;
@@ -350,7 +398,7 @@
 
 
     /* ════════════════════════════════════════
-       MAKES — Dark strip
+       MAKES, Dark strip
     ════════════════════════════════════════ */
     .makes {
       background: var(--dark);
@@ -391,7 +439,7 @@
 
 
     /* ════════════════════════════════════════
-       SERVICES — Editorial list with vertical label
+       SERVICES, Editorial list with vertical label
     ════════════════════════════════════════ */
     .services {
       background: var(--white);
@@ -450,7 +498,7 @@
       padding-bottom: 3px;
     }
 
-    /* Each service — full-width row, asymmetric */
+    /* Each service, full-width row, asymmetric */
     .svc {
       display: grid;
       grid-template-columns: 5fr 4fr;
@@ -515,7 +563,7 @@
       padding: 32px 72px;
     }
 
-    /* Sticky image column — right side of services */
+    /* Sticky image column, right side of services */
     .services-img-col {
       width: 360px;
       flex-shrink: 0;
@@ -551,10 +599,10 @@
 
 
     /* ════════════════════════════════════════
-       EV — Dark, full-width editorial
+       EV, Dark, full-width editorial
     ════════════════════════════════════════ */
     .ev {
-      background: var(--dark);
+      background: #141c2b;
       padding: 96px 0 0;
       overflow: hidden;
     }
@@ -642,7 +690,7 @@
       top: -1px;
     }
 
-    /* Photo zone — full width at bottom of EV section */
+    /* Photo zone, full width at bottom of EV section */
     .ev-photo-strip {
       height: 360px;
       background: #222222;
@@ -701,7 +749,7 @@
 
 
     /* ════════════════════════════════════════
-       ABOUT — Ghost number composition
+       ABOUT, Ghost number composition
     ════════════════════════════════════════ */
     .about {
       background: var(--white);
@@ -716,7 +764,7 @@
       min-height: clamp(480px, 56vw, 780px);
     }
 
-    /* The enormous ghost number — a design element, not content */
+    /* The enormous ghost number, a design element, not content */
     .about-ghost {
       position: absolute;
       right: -0.1em;
@@ -757,7 +805,7 @@
       flex-shrink: 0;
     }
 
-    /* The actual year — sized to feel purposeful but readable */
+    /* The actual year, sized to feel purposeful but readable */
     .about-year-display {
       display: flex;
       align-items: baseline;
@@ -798,7 +846,7 @@
     .about-copy p:last-child { margin-bottom: 0; }
     .about-copy strong { color: var(--dark); font-weight: 700; }
 
-    /* Photo gallery strip — 3 panels */
+    /* Photo gallery strip, 3 panels */
     .gallery {
       background: var(--dark);
     }
@@ -852,7 +900,7 @@
     }
 
 
-    /* Workshop photo — right column of about grid */
+    /* Workshop photo, right column of about grid */
     .about-photo-zone {
       height: 100%;
       min-height: clamp(340px, 40vw, 600px);
@@ -900,10 +948,10 @@
 
 
     /* ════════════════════════════════════════
-       REVIEW — Dark, centered editorial quote
+       REVIEW, Dark, centered editorial quote
     ════════════════════════════════════════ */
     .review {
-      background: var(--dark);
+      background: #1a1a2e;
       padding: 96px 48px;
       position: relative;
       overflow: hidden;
@@ -970,11 +1018,11 @@
     }
 
     .review-google {
-      font-size: 9px;
+      font-size: 11px;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.65);
     }
 
     .review-score-inline {
@@ -986,7 +1034,7 @@
 
 
     /* ════════════════════════════════════════
-       BOOKING CTA — Red band
+       BOOKING CTA, Red band
     ════════════════════════════════════════ */
     .book {
       background: var(--red);
@@ -1191,8 +1239,8 @@
     .footer-brand img { height: 32px; margin-bottom: 16px; }
 
     .footer-brand p {
-      font-size: 12px;
-      color: rgba(255,255,255,0.28);
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
       line-height: 1.7;
       max-width: 220px;
     }
@@ -1209,9 +1257,9 @@
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
 
     .footer-col ul a {
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.7);
       transition: color 0.12s;
     }
     .footer-col ul a:hover { color: var(--white); }
@@ -1228,7 +1276,7 @@
       flex-wrap: wrap;
     }
 
-    .footer-legal { font-size: 10px; color: rgba(255,255,255,0.16); }
+    .footer-legal { font-size: 10px; color: rgba(255,255,255,0.45); }
 
     .footer-social { display: flex; gap: 24px; }
     .footer-social a {
@@ -1236,7 +1284,7 @@
       font-weight: 700;
       letter-spacing: 0.10em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.6);
       transition: color 0.12s;
     }
     .footer-social a:hover { color: var(--white); }
@@ -1320,7 +1368,7 @@
 
 
     /* ════════════════════════════════════════
-       TRUST STRIP — Between hero and makes
+       TRUST STRIP, Between hero and makes
     ════════════════════════════════════════ */
     .trust-strip {
       background: var(--off-white);
@@ -1363,14 +1411,14 @@
     }
 
     .trust-item-text {
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 800;
       color: var(--dark);
       letter-spacing: 0.02em;
     }
 
     .trust-item-sub {
-      font-size: 10px;
+      font-size: 12px;
       font-weight: 600;
       color: var(--muted);
       letter-spacing: 0.01em;
@@ -1389,7 +1437,7 @@
 
 
     /* ════════════════════════════════════════
-       REVIEW — Two-quote layout
+       REVIEW, Two-quote layout
     ════════════════════════════════════════ */
     .review-quotes {
       display: grid;
@@ -1547,7 +1595,7 @@
             <select id="m-service" required>
               <option value="" disabled selected>Select a service</option>
               <option>European Car Service</option>
-              <option>Asian Car Service</option>
+              <option>General Servicing</option>
               <option>Logbook Service</option>
               <option>EV / Hybrid Service</option>
               <option>Brakes &amp; Suspension</option>
@@ -1566,7 +1614,7 @@
         <div class="form-submit">
           <button type="submit" class="btn btn-red" id="m-submit">Request a booking</button>
         </div>
-        <p class="modal-note" id="m-success" style="display:none;color:#2a7a2a;font-weight:700;">Booking request received — we'll confirm within one business day.</p>
+        <p class="modal-note" id="m-success" style="display:none;color:#2a7a2a;font-weight:700;">Booking request received, we'll confirm within one business day.</p>
         <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on 0482 097 182.</p>
         <p class="modal-phone-fallback">Prefer to call? <a href="tel:0482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
       </form>
@@ -1586,14 +1634,19 @@
       <li><a href="/about/">About</a></li>
       <li class="dd">
         <a href="/services/">Services</a>
-        <div class="dd-menu">
-          <a href="/european-cars/">European Cars</a>
-          <a href="/asian-cars/">Asian Cars</a>
-          <a href="/logbook-service/">Logbook Servicing</a>
-          <a href="/fleet-maintenance/">Fleet Maintenance</a>
-          <a href="/brakes-suspension/">Brakes &amp; Suspension</a>
-          <a href="/diagnostics/">Diagnostics</a>
-          <a href="/auto-electrical/">Auto Electrical</a>
+        <div class="mega-menu">
+          <div class="mega-links">
+            <a href="/european-cars/">European Cars</a>
+            <a href="/asian-cars/">General Servicing</a>
+            <a href="/logbook-service/">Logbook Servicing</a>
+            <a href="/fleet-maintenance/">Fleet Maintenance</a>
+            <a href="/brakes-suspension/">Brakes &amp; Suspension</a>
+            <a href="/diagnostics/">Diagnostics</a>
+            <a href="/auto-electrical/">Auto Electrical</a>
+          </div>
+          <div class="mega-img">
+            <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Audi-Q7-FrontB.jpg" alt="European car">
+          </div>
         </div>
       </li>
       <li class="dd">
@@ -1607,6 +1660,7 @@
       <li><a href="/faqs/">FAQs</a></li>
       <li><a href="/contact/">Contact</a></li>
     </ul>
+    <a href="tel:0482097182" class="nav-phone">0482 097 182</a>
     <button class="btn btn-red nav-cta" onclick="openModal()">Book a service</button>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -1617,7 +1671,7 @@
     <a href="/about/">About</a>
     <a href="/services/">Services</a>
     <a href="/european-cars/" style="padding-left:44px;font-size:8px">European Cars</a>
-    <a href="/asian-cars/" style="padding-left:44px;font-size:8px">Asian Cars</a>
+    <a href="/asian-cars/" style="padding-left:44px;font-size:8px">General Servicing</a>
     <a href="/logbook-service/" style="padding-left:44px;font-size:8px">Logbook Servicing</a>
     <a href="/fleet-maintenance/" style="padding-left:44px;font-size:8px">Fleet Maintenance</a>
     <a href="/brakes-suspension/" style="padding-left:44px;font-size:8px">Brakes &amp; Suspension</a>
@@ -1635,16 +1689,17 @@
 </nav>
 
 
-<!-- ════════ HERO — Editorial composition, no column grid ════════ -->
+<!-- ════════ HERO, Editorial composition, no column grid ════════ -->
 <section class="hero" aria-label="Hero">
 
-  <!-- Ghost "30" — typographic texture in background -->
+  <!-- Ghost "30", typographic texture in background -->
   <span class="hero-ghost" aria-hidden="true">30</span>
 
-  <!-- Text content — max-width 58%, no column border, no box -->
+  <!-- Text content, max-width 58%, no column border, no box -->
   <div class="hero-content">
     <div>
-      <p class="hero-kicker">Shenton Park, Perth WA &nbsp;·&nbsp; 30+ years in the same spot</p>
+      <p class="hero-location">Shenton Park, Perth</p>
+      <p class="hero-kicker">30+ years in the same spot · European, hybrid &amp; EV specialists</p>
       <h1 class="hero-headline">
         We'll tell<br>
         you what's<br>
@@ -1670,17 +1725,9 @@
     </div>
   </div>
 
-  <!-- Photo — absolutely placed, NOT a column, diagonal left edge -->
+  <!-- Photo, absolutely placed, NOT a column, diagonal left edge -->
   <div class="hero-photo" aria-hidden="true">
-    <!-- Replace src with workshop exterior or in-workshop shot -->
-    <!-- <img src="hero.jpg" alt="Automotive Insight workshop, Shenton Park"> -->
-    <div class="img-ph">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-        <circle cx="12" cy="13" r="4"/>
-      </svg>
-      <span>Workshop photo</span>
-    </div>
+    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/Mechanic-with-Clip-Board.jpg" alt="Automotive Insight mechanic, Shenton Park">
   </div>
 
 </section>
@@ -1750,7 +1797,7 @@
 </div>
 
 
-<!-- ════════ SERVICES — Editorial list ════════ -->
+<!-- ════════ SERVICES, Editorial list ════════ -->
 <section class="services" aria-labelledby="services-h">
 
   <div class="services-aside" aria-hidden="true">
@@ -1762,7 +1809,7 @@
       <h2 id="services-h">What we do</h2>
     </div>
     <div style="padding: 32px 72px 0; border-bottom: 1px solid var(--border);">
-      <p style="font-size:15px;color:var(--muted);line-height:1.7;max-width:640px;padding-bottom:32px;">Specialist servicing for European marques, hybrids, and EVs — and everything in between. One workshop, no second tier.</p>
+      <p style="font-size:15px;color:var(--muted);line-height:1.7;max-width:640px;padding-bottom:32px;">Specialist servicing for European marques, hybrids, and EVs, and everything in between. One workshop, no second tier.</p>
     </div>
 
     <div class="svc">
@@ -1780,10 +1827,10 @@
     <div class="svc">
       <a href="/asian-cars/">
         <div class="svc-name-col">
-          <div class="svc-name">Asian Cars</div>
+          <div class="svc-name">General Servicing</div>
         </div>
         <div class="svc-desc-col">
-          <span class="svc-desc">Toyota, Mazda, Hyundai, Kia, Subaru. We don't have a second tier — same attention to detail as our European work.</span>
+          <span class="svc-desc">Toyota, Mazda, Hyundai, Kia, Subaru. The same diagnostic rigour and attention to detail we bring to every job, regardless of make.</span>
           <span class="svc-arrow">→</span>
         </div>
       </a>
@@ -1855,22 +1902,15 @@
     </div>
   </div>
 
-  <!-- Sticky image column — replace src with mechanic/workshop photo -->
+  <!-- Sticky image column -->
   <div class="services-img-col" aria-hidden="true">
-    <!-- <img src="services-mechanic.jpg" alt="Mechanic working on European car"> -->
-    <div class="img-ph">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-        <circle cx="12" cy="13" r="4"/>
-      </svg>
-      <span>Mechanic at work</span>
-    </div>
+    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Audi-Q7-FrontB.jpg" alt="European car at Automotive Insight">
   </div>
 
 </section>
 
 
-<!-- ════════ EV — Dark, full editorial ════════ -->
+<!-- ════════ EV, Dark, full editorial ════════ -->
 <section class="ev" aria-labelledby="ev-h">
 
   <div class="ev-text">
@@ -1887,7 +1927,7 @@
         <p class="ev-body">
           Hybrid and EV diagnosis takes more than a scan tool. It takes experience with the drivetrain.
           We've been working on hybrids since before they were common, and EVs since before most workshops would touch them.
-          Onsite charging, factory-level OEM diagnostic equipment, and technicians who'll explain what they actually found — not just reset the warning light and hand it back.
+          Onsite charging, factory-level OEM diagnostic equipment, and technicians who'll explain what they actually found, not just reset the warning light and hand it back.
         </p>
         <a href="/ev-hybrid/" class="btn btn-ghost-white">Explore EV &amp; Hybrid services</a>
       </div>
@@ -1903,23 +1943,16 @@
 
   <!-- Full-width photo strip at the bottom -->
   <div class="ev-photo-strip" aria-hidden="true">
-    <!-- Replace with EV workshop photo when available -->
-    <div class="ev-photo-placeholder">
-      <svg class="photo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-        <circle cx="12" cy="13" r="4"/>
-      </svg>
-      <span class="photo-label">EV / Hybrid workshop photo</span>
-    </div>
+    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/hybrid-rav-4-3-1.jpg" alt="Hybrid RAV4 at Automotive Insight">
   </div>
 
 </section>
 
 
-<!-- ════════ ABOUT — Ghost number composition ════════ -->
+<!-- ════════ ABOUT, Ghost number composition ════════ -->
 <section class="about" aria-labelledby="about-h">
 
-  <!-- Enormous ghost number — visual texture, not content -->
+  <!-- Enormous ghost number, visual texture, not content -->
   <div class="about-ghost" aria-hidden="true">30+</div>
 
   <div class="about-grid">
@@ -1948,16 +1981,9 @@
       </div>
     </div>
 
-    <!-- Workshop photo — right column -->
+    <!-- Workshop photo, right column -->
     <div class="about-photo-zone" aria-label="Workshop photo">
-      <!-- <img src="about-workshop.jpg" alt="Automotive Insight workshop, Shenton Park"> -->
-      <div class="img-ph">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
-          <polyline points="9 22 9 12 15 12 15 22"/>
-        </svg>
-        <span>Workshop photo</span>
-      </div>
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/bmw-1.jpg" alt="BMW at Automotive Insight workshop">
       <div class="about-address-bar">
         <div class="al">Our location</div>
         <address>206A Stubbs Terrace, Shenton Park WA 6008</address>
@@ -1969,43 +1995,22 @@
 </section>
 
 
-<!-- ════════ GALLERY STRIP — 3 workshop photos ════════ -->
+<!-- ════════ GALLERY STRIP, 3 workshop photos ════════ -->
 <section class="gallery" aria-label="Workshop gallery">
   <div class="gallery-inner">
 
     <div class="gallery-photo">
-      <!-- <img src="gallery-workshop.jpg" alt="Workshop interior"> -->
-      <div class="ev-photo-placeholder">
-        <svg class="photo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-          <circle cx="12" cy="13" r="4"/>
-        </svg>
-        <span class="photo-label">Workshop interior</span>
-      </div>
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Rav4-Hybbrid-Service-1.jpg" alt="Hybrid service at Automotive Insight">
       <div class="gallery-caption"><span>Inside the workshop</span></div>
     </div>
 
     <div class="gallery-photo">
-      <!-- <img src="gallery-european.jpg" alt="European car on lift"> -->
-      <div class="ev-photo-placeholder">
-        <svg class="photo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-          <circle cx="12" cy="13" r="4"/>
-        </svg>
-        <span class="photo-label">European car on hoist</span>
-      </div>
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/volkswagen_crop.jpg" alt="Volkswagen at Automotive Insight">
       <div class="gallery-caption"><span>European car specialist</span></div>
     </div>
 
     <div class="gallery-photo">
-      <!-- <img src="gallery-team.jpg" alt="Automotive Insight team"> -->
-      <div class="ev-photo-placeholder">
-        <svg class="photo-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
-          <circle cx="12" cy="13" r="4"/>
-        </svg>
-        <span class="photo-label">Team or detail shot</span>
-      </div>
+      <img src="https://services.automotiveinsight.com.au/images/Auto-insight-Team.jpg" alt="Automotive Insight team">
       <div class="gallery-caption"><span>The team at Automotive Insight</span></div>
     </div>
 
@@ -2013,7 +2018,7 @@
 </section>
 
 
-<!-- ════════ REVIEW — Dark, centered editorial ════════ -->
+<!-- ════════ REVIEW, Dark, centered editorial ════════ -->
 <section class="review" aria-labelledby="review-h">
 
   <!-- Ghost score in background -->
@@ -2136,7 +2141,7 @@
             <select id="c-service" required>
               <option value="" disabled selected>Select a service</option>
               <option>European Car Service</option>
-              <option>Asian Car Service</option>
+              <option>General Servicing</option>
               <option>Logbook Service</option>
               <option>EV / Hybrid Service</option>
               <option>Brakes &amp; Suspension</option>
@@ -2155,7 +2160,7 @@
         <div class="form-submit">
           <button type="submit" class="btn btn-red" id="c-submit">Request a booking</button>
         </div>
-        <p class="modal-note" id="c-success" style="display:none;color:#2a7a2a;font-weight:700;margin-top:10px;">Booking request received — we'll confirm within one business day.</p>
+        <p class="modal-note" id="c-success" style="display:none;color:#2a7a2a;font-weight:700;margin-top:10px;">Booking request received, we'll confirm within one business day.</p>
         <p class="modal-note" id="c-error" style="display:none;color:var(--red);margin-top:10px;">Something went wrong. Please call us on 0482 097 182.</p>
       </form>
     </div>
@@ -2175,7 +2180,7 @@
       <h5>Services</h5>
       <ul>
         <li><a href="/european-cars/">European Cars</a></li>
-        <li><a href="/asian-cars/">Asian Cars</a></li>
+        <li><a href="/asian-cars/">General Servicing</a></li>
         <li><a href="/logbook-service/">Logbook Servicing</a></li>
         <li><a href="/fleet-maintenance/">Fleet Maintenance</a></li>
         <li><a href="/brakes-suspension/">Brakes &amp; Suspension</a></li>
