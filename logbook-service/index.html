@@ -197,7 +197,10 @@
       .footer-bottom { padding: 24px 24px 0; }
       .field-row { grid-template-columns: 1fr; }
     }
-  </style>
+      h1 .line, h2 .line { display: block; }
+        .tel-link { color: inherit; text-decoration: none; white-space: nowrap; }
+    .tel-link:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
 
@@ -229,7 +232,7 @@
           </div>
           <div class="form-submit"><button type="submit" class="btn btn-red" id="m-submit">Request a booking</button></div>
           <p class="modal-note" id="m-success" style="display:none;color:#2a7a2a;font-weight:700;">Booking request received — we'll confirm within one business day.</p>
-          <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on 0482 097 182.</p>
+          <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on <a href="tel:+61482097182" class="tel-link">0482 097 182</a>.</p>
           <p class="modal-phone-fallback">Prefer to call? <a href="tel:0482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
         </form>
       </div>
@@ -240,7 +243,7 @@
   <nav class="nav">
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Automotive Insight">
-        <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+        <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
       </a>
       <ul class="nav-links">
         <li><a href="/">Home</a></li>
@@ -307,7 +310,10 @@
         <span class="current">Logbook Servicing</span>
       </nav>
       <p class="page-kicker">Warranty-safe servicing</p>
-      <h1 class="page-headline">Your warranty,<br><em>intact.</em></h1>
+      <h1 class="page-headline">
+  <span class="line">Your warranty,</span>
+  <span class="line"><em>intact.</em></span>
+</h1>
       <p class="page-tagline">You don't need to go to the dealership to keep your warranty. We stamp the book, use the right parts, and tell you exactly what was done.</p>
       <div class="page-hero-ctas">
         <button class="btn btn-gold" onclick="openModal()">Book a service</button>
@@ -346,7 +352,7 @@
           </div>
           <!-- Placeholder photo zone -->
           <div>
-            <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Rav4-Hybbrid-Service-1.jpg" alt="Logbook service at Automotive Insight" style="width:100%;height:280px;object-fit:cover;margin-top:40px;">
+            <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Rav4-Hybbrid-Service-1.jpg" alt="Logbook service at Automotive Insight" style="width:100%;height:280px;object-fit:cover;margin-top:40px;" width="800" height="534" loading="lazy" decoding="async">
           </div>
         </div>
       </section>
@@ -358,7 +364,10 @@
   <section class="book" aria-label="Book a service">
     <div class="book-inner">
       <div class="book-text">
-        <h2>Book a time.<br>We'll tell you straight.</h2>
+        <h2>
+  <span class="line">Book a time.</span>
+  <span class="line">We'll tell you straight.</span>
+</h2>
         <p>Let us know your rego and what's going on. No obligation until you've heard the diagnosis.</p>
       </div>
       <div class="book-ctas">
@@ -372,7 +381,7 @@
   <footer class="footer">
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+        <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
         <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. You talk to the mechanic, not an advisor.</p>
       </div>
       <div class="footer-col">

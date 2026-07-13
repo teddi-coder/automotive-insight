@@ -187,7 +187,10 @@
       .ev-grid-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
       .makes-grid { grid-template-columns: 1fr 1fr; }
     }
-  </style>
+      h1 .line, h2 .line { display: block; }
+        .tel-link { color: inherit; text-decoration: none; white-space: nowrap; }
+    .tel-link:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
 
@@ -219,7 +222,7 @@
         </div>
         <div class="form-submit"><button type="submit" class="btn btn-red" id="m-submit">Request a booking</button></div>
         <p class="modal-note" id="m-success" style="display:none;color:#2a7a2a;font-weight:700;">Booking request received — we'll confirm within one business day.</p>
-        <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on 0482 097 182.</p>
+        <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on <a href="tel:+61482097182" class="tel-link">0482 097 182</a>.</p>
         <p class="modal-phone-fallback">Prefer to call? <a href="tel:0482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
       </form>
     </div>
@@ -230,7 +233,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="Automotive Insight">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
     </a>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
@@ -297,7 +300,10 @@
       <span class="current">Hybrid Servicing</span>
     </nav>
     <p class="page-kicker">Hybrid specialist</p>
-    <h1 class="page-headline">Hybrid servicing,<br><em>done properly.</em></h1>
+    <h1 class="page-headline">
+  <span class="line">Hybrid servicing,</span>
+  <span class="line"><em>done properly.</em></span>
+</h1>
     <p class="page-tagline">Hybrid vehicles need more than a standard mechanic. Battery health, regenerative braking, and high-voltage systems — we handle all of it.</p>
     <div class="page-hero-ctas">
       <button class="btn btn-gold" onclick="openModal()">Book a hybrid service</button>
@@ -341,7 +347,10 @@
 
     <div class="ev-ph-section">
       <p class="ev-ph-label">Battery health</p>
-      <h2 class="ev-ph-heading">We test the battery,<br>not just the warning light.</h2>
+      <h2 class="ev-ph-heading">
+  <span class="line">We test the battery,</span>
+  <span class="line">not just the warning light.</span>
+</h2>
       <p class="ev-ph-body">Our battery diagnostic goes beyond fault codes — we run a full capacity and cell-balance test to tell you exactly how your hybrid battery is performing and how much life it has left. That means no surprises down the road and a clear picture of whether your battery is healthy, declining, or needs attention now.</p>
     </div>
 
@@ -352,7 +361,10 @@
 <section class="book" aria-label="Book a service">
   <div class="book-inner">
     <div class="book-text">
-      <h2>Book a time.<br>We'll tell you straight.</h2>
+      <h2>
+  <span class="line">Book a time.</span>
+  <span class="line">We'll tell you straight.</span>
+</h2>
       <p>Let us know your rego and what's going on. No obligation until you've heard the diagnosis.</p>
     </div>
     <div class="book-ctas">
@@ -366,7 +378,7 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
       <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. You talk to the mechanic, not an advisor.</p>
     </div>
     <div class="footer-col">
