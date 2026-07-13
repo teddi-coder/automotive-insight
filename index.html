@@ -1351,6 +1351,14 @@
     .modal-body .field { margin-bottom: 8px; }
     .modal-body .field-row .field { margin-bottom: 0; }
     .modal-note { font-size: 11px; color: var(--muted); text-align: center; margin-top: 10px; }
+    .step-indicator { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .step-dot { width: 26px; height: 26px; border-radius: 50%; background: #e9ecef; color: #6c757d; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+    .step-dot.active { background: var(--dark); color: #fff; }
+    .step-dot.done   { background: #2a9d8f; color: #fff; }
+    .step-line       { flex: 1; height: 2px; background: #e9ecef; }
+    .step-label      { font-size: 12px; font-weight: 600; color: var(--muted); margin-bottom: 10px; margin-top: 0; }
+    .form-actions    { display: flex; gap: 10px; margin-top: 10px; }
+    .form-actions .btn { flex: 1; text-align: center; }
 
     .modal-phone-fallback {
       text-align: center;
@@ -1636,68 +1644,89 @@
     </div>
     <div class="modal-body">
       <form id="bookingForm" novalidate>
-        <div class="field-row">
-          <div class="field">
-            <label for="m-name">Your name *</label>
-            <input type="text" id="m-name" placeholder="Full name" required autocomplete="name">
-          </div>
-          <div class="field">
-            <label for="m-phone">Phone *</label>
-            <input type="tel" id="m-phone" placeholder="0400 000 000" required autocomplete="tel">
-          </div>
+
+        <!-- Step indicator -->
+        <div class="step-indicator" aria-live="polite" aria-atomic="true">
+          <span class="step-dot active" data-step="1">1</span>
+          <span class="step-line"></span>
+          <span class="step-dot" data-step="2">2</span>
         </div>
-        <div class="field">
-          <label for="m-email">Email *</label>
-          <input type="email" id="m-email" placeholder="you@email.com" required autocomplete="email">
+
+        <!-- STEP 1: Contact details -->
+        <div class="form-step" id="m-step-1">
+          <p class="step-label">Your details</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="m-name">Your name <span aria-hidden="true">*</span></label>
+              <input type="text" id="m-name" placeholder="Full name" required autocomplete="name">
+            </div>
+            <div class="field">
+              <label for="m-phone">Phone <span aria-hidden="true">*</span></label>
+              <input type="tel" id="m-phone" placeholder="0400 000 000" required autocomplete="tel">
+            </div>
+          </div>
+          <div class="field">
+            <label for="m-email">Email <span aria-hidden="true">*</span></label>
+            <input type="email" id="m-email" placeholder="you@email.com" required autocomplete="email">
+          </div>
+          <div class="form-submit">
+            <button type="button" id="m-next-step" class="btn btn-red">Next — vehicle details →</button>
+          </div>
+          <p class="modal-phone-fallback">Prefer to call? <a href="tel:+61482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
         </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="m-make">Vehicle make *</label>
-            <input type="text" id="m-make" placeholder="e.g. BMW" required>
+
+        <!-- STEP 2: Vehicle + service -->
+        <div class="form-step" id="m-step-2" hidden>
+          <p class="step-label">Your vehicle</p>
+          <div class="field-row">
+            <div class="field">
+              <label for="m-make">Make <span aria-hidden="true">*</span></label>
+              <input type="text" id="m-make" placeholder="e.g. BMW" required autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="m-model">Model <span aria-hidden="true">*</span></label>
+              <input type="text" id="m-model" placeholder="e.g. 320i" required autocomplete="off">
+            </div>
           </div>
-          <div class="field">
-            <label for="m-model">Model *</label>
-            <input type="text" id="m-model" placeholder="e.g. 320i" required>
+          <div class="field-row">
+            <div class="field">
+              <label for="m-year">Year <span aria-hidden="true">*</span></label>
+              <input type="text" id="m-year" placeholder="e.g. 2019" required autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="m-rego">Registration</label>
+              <input type="text" id="m-rego" placeholder="ABC123 (optional)" style="text-transform:uppercase">
+            </div>
           </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="m-service">Service type <span aria-hidden="true">*</span></label>
+              <select id="m-service" required>
+                <option value="" disabled selected>Select a service</option>
+                <option>European Car Service</option>
+                <option>General Servicing</option>
+                <option>Logbook Service</option>
+                <option>EV / Hybrid Service</option>
+                <option>Brakes &amp; Suspension</option>
+                <option>Diagnostics</option>
+                <option>Auto Electrical</option>
+                <option>Fleet Maintenance</option>
+                <option>DOT Inspection</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="m-date">Preferred date <span aria-hidden="true">*</span></label>
+              <input type="date" id="m-date" required>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="button" id="m-prev-step" class="btn btn-ghost">← Back</button>
+            <button type="submit" class="btn btn-red" id="m-submit">Request booking</button>
+          </div>
+          <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on <a href="tel:+61482097182">0482 097 182</a>.</p>
         </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="m-year">Year *</label>
-            <input type="text" id="m-year" placeholder="e.g. 2019" required>
-          </div>
-          <div class="field">
-            <label for="m-rego">Registration</label>
-            <input type="text" id="m-rego" placeholder="ABC123 (optional)" style="text-transform:uppercase">
-          </div>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="m-service">Service type *</label>
-            <select id="m-service" required>
-              <option value="" disabled selected>Select a service</option>
-              <option>European Car Service</option>
-              <option>General Servicing</option>
-              <option>Logbook Service</option>
-              <option>EV / Hybrid Service</option>
-              <option>Brakes &amp; Suspension</option>
-              <option>Diagnostics</option>
-              <option>Auto Electrical</option>
-              <option>Fleet Maintenance</option>
-              <option>DOT Inspection</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="m-date">Preferred date *</label>
-            <input type="date" id="m-date" required>
-          </div>
-        </div>
-        <div class="form-submit">
-          <button type="submit" class="btn btn-red" id="m-submit">Request a booking</button>
-        </div>
-        <p class="modal-note" id="m-success" style="display:none;color:#2a7a2a;font-weight:700;">Booking request received, we'll confirm within one business day.</p>
-        <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on <a href="tel:+61482097182" class="tel-link">0482 097 182</a>.</p>
-        <p class="modal-phone-fallback">Prefer to call? <a href="tel:0482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
+
       </form>
     </div>
   </div>
@@ -2315,16 +2344,51 @@
   const _p = new URLSearchParams(window.location.search);
   const _utm = { utm_source: _p.get('utm_source')||'', utm_medium: _p.get('utm_medium')||'', utm_campaign: _p.get('utm_campaign')||'', utm_content: _p.get('utm_content')||'', utm_term: _p.get('utm_term')||'', gclid: _p.get('gclid')||'', landing_page: window.location.href };
 
-  async function _submitToSupabase(formEl, prefix, closeAfter) {
+  async function _submitToSupabase(formEl, prefix, redirectOnSuccess) {
     const g = id => (document.getElementById(id)||{}).value||'';
     const btn = document.getElementById(prefix+'submit');
     btn.disabled = true; btn.textContent = 'Sending…';
-    document.getElementById(prefix+'success').style.display = 'none';
-    document.getElementById(prefix+'error').style.display = 'none';
+    const errEl = document.getElementById(prefix+'error');
+    if (errEl) errEl.style.display = 'none';
     const { error } = await _sb.from('ai_bookings').insert({ customer_name: g(prefix+'name'), customer_phone: g(prefix+'phone'), customer_email: g(prefix+'email'), vehicle_make: g(prefix+'make'), vehicle_model: g(prefix+'model'), vehicle_year: g(prefix+'year'), vehicle_registration: g(prefix+'rego'), service_type: g(prefix+'service'), preferred_date: g(prefix+'date'), ..._utm });
-    if (error) { btn.disabled = false; btn.textContent = 'Request a booking'; document.getElementById(prefix+'error').style.display = 'block'; }
-    else { formEl.reset(); btn.textContent = 'Sent!'; document.getElementById(prefix+'success').style.display = 'block'; if (closeAfter) setTimeout(closeModal, 3000); }
+    if (error) {
+      btn.disabled = false; btn.textContent = 'Request booking';
+      if (errEl) errEl.style.display = 'block';
+    } else if (redirectOnSuccess) {
+      window.location.assign('/thank-you');
+    } else {
+      formEl.reset(); btn.textContent = 'Sent!';
+      const successEl = document.getElementById(prefix+'success');
+      if (successEl) successEl.style.display = 'block';
+    }
   }
+
+  /* Modal booking form — 2-step navigation */
+  const _mStep1   = document.getElementById('m-step-1');
+  const _mStep2   = document.getElementById('m-step-2');
+  const _mNextBtn = document.getElementById('m-next-step');
+  const _mPrevBtn = document.getElementById('m-prev-step');
+  const _mDots    = document.querySelectorAll('#bookingForm .step-dot');
+
+  _mNextBtn.addEventListener('click', () => {
+    const fields = _mStep1.querySelectorAll('[required]');
+    let valid = true;
+    fields.forEach(f => { if (!f.checkValidity()) { f.reportValidity(); valid = false; } });
+    if (!valid) return;
+    _mStep1.hidden = true;
+    _mStep2.hidden = false;
+    _mDots[0].classList.replace('active', 'done');
+    _mDots[1].classList.add('active');
+    _mStep2.querySelector('input, select').focus();
+  });
+
+  _mPrevBtn.addEventListener('click', () => {
+    _mStep2.hidden = true;
+    _mStep1.hidden = false;
+    _mDots[1].classList.remove('active');
+    _mDots[0].classList.replace('done', 'active');
+    _mNextBtn.focus();
+  });
 
   document.getElementById('bookingForm').addEventListener('submit', e => { e.preventDefault(); _submitToSupabase(e.target, 'm-', true); });
   document.getElementById('contactForm').addEventListener('submit', e => { e.preventDefault(); _submitToSupabase(e.target, 'c-', false); });
