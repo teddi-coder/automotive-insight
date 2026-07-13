@@ -213,7 +213,10 @@
       .about-values { padding: 56px 24px; }
       .about-page-story-inner { padding: 0 24px; }
     }
-  </style>
+      h1 .line, h2 .line { display: block; }
+        .tel-link { color: inherit; text-decoration: none; white-space: nowrap; }
+    .tel-link:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
 
@@ -245,7 +248,7 @@
         </div>
         <div class="form-submit"><button type="submit" class="btn btn-red" id="m-submit">Request a booking</button></div>
         <p class="modal-note" id="m-success" style="display:none;color:#2a7a2a;font-weight:700;">Booking request received — we'll confirm within one business day.</p>
-        <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on 0482 097 182.</p>
+        <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on <a href="tel:+61482097182" class="tel-link">0482 097 182</a>.</p>
         <p class="modal-phone-fallback">Prefer to call? <a href="tel:0482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
       </form>
     </div>
@@ -256,7 +259,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="Automotive Insight">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
     </a>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
@@ -321,7 +324,11 @@
       <span class="current">About</span>
     </nav>
     <p class="page-kicker">30+ years in Shenton Park</p>
-    <h1 class="page-headline">The mechanic<br>you actually<br><em>talk to.</em></h1>
+    <h1 class="page-headline">
+  <span class="line">The mechanic</span>
+  <span class="line">you actually</span>
+  <span class="line"><em>talk to.</em></span>
+</h1>
     <p class="page-tagline">We've been at 206A Stubbs Terrace since 1993. In that time, one thing hasn't changed: when you collect your car, you speak to the person who worked on it.</p>
   </div>
   <div class="page-hero-ghost" aria-hidden="true">AI</div>
@@ -332,7 +339,11 @@
   <div class="about-page-story-inner">
     <div class="about-story-left">
       <p class="about-kicker">Our story</p>
-      <h2>One workshop.<br>Thirty years.<br>Same address.</h2>
+      <h2>
+  <span class="line">One workshop.</span>
+  <span class="line">Thirty years.</span>
+  <span class="line">Same address.</span>
+</h2>
       <div class="about-story-copy">
         <p>Automotive Insight opened its doors on Stubbs Terrace in 1993. The workshop has grown, the tools have changed, and we've added EV and hybrid capability as the fleet on Perth roads has evolved — but the fundamentals haven't shifted an inch. <strong>You talk to the mechanic. Not a service advisor reading from a screen.</strong></p>
         <p>We built the business on European marques at a time when independent workshops either avoided them or guessed at them. Thirty years of working on Audi, BMW, Mercedes-Benz, Volkswagen, and Volvo means we diagnose faster and get it right the first time. The same rigour applies to every car that comes through the door, regardless of make.</p>
@@ -340,7 +351,7 @@
       </div>
     </div>
     <div class="about-story-right">
-      <img src="https://services.automotiveinsight.com.au/images/Auto-insight-Team.jpg" alt="Automotive Insight team" style="width:100%;height:280px;object-fit:cover;margin-bottom:24px;">
+      <img src="https://services.automotiveinsight.com.au/images/Auto-insight-Team.jpg" alt="Automotive Insight team" style="width:100%;height:280px;object-fit:cover;margin-bottom:24px;" width="900" height="600" loading="lazy" decoding="async">
       <div class="about-stat">
         <div class="about-stat-num">30<em>+</em></div>
         <div class="about-stat-label">Years in Shenton Park</div>
@@ -383,7 +394,10 @@
 <section class="book" aria-label="Book a service">
   <div class="book-inner">
     <div class="book-text">
-      <h2>Book a time.<br>We'll tell you straight.</h2>
+      <h2>
+  <span class="line">Book a time.</span>
+  <span class="line">We'll tell you straight.</span>
+</h2>
       <p>Let us know your rego and what's going on. No obligation until you've heard the diagnosis.</p>
     </div>
     <div class="book-ctas">
@@ -397,7 +411,7 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
       <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. You talk to the mechanic, not an advisor.</p>
     </div>
     <div class="footer-col">

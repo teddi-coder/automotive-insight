@@ -1541,7 +1541,10 @@
       .gallery-photo:last-child { display: flex; }
       .gallery-photo:nth-child(2) { display: none; }
     }
-  </style>
+      h1 .line, h2 .line { display: block; }
+        .tel-link { color: inherit; text-decoration: none; white-space: nowrap; }
+    .tel-link:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
 
@@ -1615,7 +1618,7 @@
           <button type="submit" class="btn btn-red" id="m-submit">Request a booking</button>
         </div>
         <p class="modal-note" id="m-success" style="display:none;color:#2a7a2a;font-weight:700;">Booking request received, we'll confirm within one business day.</p>
-        <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on 0482 097 182.</p>
+        <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on <a href="tel:+61482097182" class="tel-link">0482 097 182</a>.</p>
         <p class="modal-phone-fallback">Prefer to call? <a href="tel:0482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
       </form>
     </div>
@@ -1627,7 +1630,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="Automotive Insight">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
     </a>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
@@ -1645,7 +1648,7 @@
             <a href="/auto-electrical/">Auto Electrical</a>
           </div>
           <div class="mega-img">
-            <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Audi-Q7-FrontB.jpg" alt="European car">
+            <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Audi-Q7-FrontB.jpg" alt="European car" width="1200" height="800" fetchpriority="high" decoding="async">
           </div>
         </div>
       </li>
@@ -1701,11 +1704,11 @@
       <p class="hero-location">Shenton Park, Perth</p>
       <p class="hero-kicker">30+ years in the same spot · European, hybrid &amp; EV specialists</p>
       <h1 class="hero-headline">
-        We'll tell<br>
-        you what's<br>
-        wrong before<br>
-        we fix <em>it.</em>
-      </h1>
+  <span class="line">We'll tell</span>
+  <span class="line">you what's</span>
+  <span class="line">wrong before</span>
+  <span class="line">we fix <em>it.</em></span>
+</h1>
     </div>
     <div class="hero-foot">
       <div class="hero-ctas">
@@ -1727,7 +1730,7 @@
 
   <!-- Photo, absolutely placed, NOT a column, diagonal left edge -->
   <div class="hero-photo" aria-hidden="true">
-    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/Mechanic-with-Clip-Board.jpg" alt="Automotive Insight mechanic, Shenton Park">
+    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/Mechanic-with-Clip-Board.jpg" alt="Automotive Insight mechanic, Shenton Park" width="800" height="600" loading="lazy" decoding="async">
   </div>
 
 </section>
@@ -1904,7 +1907,7 @@
 
   <!-- Sticky image column -->
   <div class="services-img-col" aria-hidden="true">
-    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Audi-Q7-FrontB.jpg" alt="European car at Automotive Insight">
+    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Audi-Q7-FrontB.jpg" alt="European car at Automotive Insight" width="1200" height="800" fetchpriority="high" decoding="async">
   </div>
 
 </section>
@@ -1919,11 +1922,11 @@
     <div class="ev-columns">
       <div>
         <h2 class="ev-headline" id="ev-h">
-          Most places<br>
-          reset the light.<br>
-          We find out<br>
-          <em>why it's on.</em>
-        </h2>
+  <span class="line">Most places</span>
+  <span class="line">reset the light.</span>
+  <span class="line">We find out</span>
+  <span class="line"><em>why it's on.</em></span>
+</h2>
         <p class="ev-body">
           Hybrid and EV diagnosis takes more than a scan tool. It takes experience with the drivetrain.
           We've been working on hybrids since before they were common, and EVs since before most workshops would touch them.
@@ -1943,7 +1946,7 @@
 
   <!-- Full-width photo strip at the bottom -->
   <div class="ev-photo-strip" aria-hidden="true">
-    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/hybrid-rav-4-3-1.jpg" alt="Hybrid RAV4 at Automotive Insight">
+    <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/hybrid-rav-4-3-1.jpg" alt="Hybrid RAV4 at Automotive Insight" width="800" height="534" loading="lazy" decoding="async">
   </div>
 
 </section>
@@ -1983,7 +1986,7 @@
 
     <!-- Workshop photo, right column -->
     <div class="about-photo-zone" aria-label="Workshop photo">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/bmw-1.jpg" alt="BMW at Automotive Insight workshop">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/bmw-1.jpg" alt="BMW at Automotive Insight workshop" width="800" height="534" loading="lazy" decoding="async">
       <div class="about-address-bar">
         <div class="al">Our location</div>
         <address>206A Stubbs Terrace, Shenton Park WA 6008</address>
@@ -2000,17 +2003,17 @@
   <div class="gallery-inner">
 
     <div class="gallery-photo">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Rav4-Hybbrid-Service-1.jpg" alt="Hybrid service at Automotive Insight">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/Rav4-Hybbrid-Service-1.jpg" alt="Hybrid service at Automotive Insight" width="800" height="534" loading="lazy" decoding="async">
       <div class="gallery-caption"><span>Inside the workshop</span></div>
     </div>
 
     <div class="gallery-photo">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/volkswagen_crop.jpg" alt="Volkswagen at Automotive Insight">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/12/volkswagen_crop.jpg" alt="Volkswagen at Automotive Insight" width="800" height="534" loading="lazy" decoding="async">
       <div class="gallery-caption"><span>European car specialist</span></div>
     </div>
 
     <div class="gallery-photo">
-      <img src="https://services.automotiveinsight.com.au/images/Auto-insight-Team.jpg" alt="Automotive Insight team">
+      <img src="https://services.automotiveinsight.com.au/images/Auto-insight-Team.jpg" alt="Automotive Insight team" width="900" height="600" loading="lazy" decoding="async">
       <div class="gallery-caption"><span>The team at Automotive Insight</span></div>
     </div>
 
@@ -2049,7 +2052,10 @@
 <section class="book" aria-label="Book a service">
   <div class="book-inner">
     <div class="book-text">
-      <h2>Book a time.<br>We'll tell you straight.</h2>
+      <h2>
+  <span class="line">Book a time.</span>
+  <span class="line">We'll tell you straight.</span>
+</h2>
       <p>Let us know your rego and what's going on. No obligation until you've heard the diagnosis.</p>
     </div>
     <div class="book-ctas">
@@ -2066,7 +2072,10 @@
 
     <div class="contact-left">
       <p class="contact-kicker">Find us</p>
-      <h2 id="contact-h">Come in and<br>say hello.</h2>
+      <h2 id="contact-h">
+  <span class="line">Come in and</span>
+  <span class="line">say hello.</span>
+</h2>
 
       <div class="map-frame">
         <iframe
@@ -2161,7 +2170,7 @@
           <button type="submit" class="btn btn-red" id="c-submit">Request a booking</button>
         </div>
         <p class="modal-note" id="c-success" style="display:none;color:#2a7a2a;font-weight:700;margin-top:10px;">Booking request received, we'll confirm within one business day.</p>
-        <p class="modal-note" id="c-error" style="display:none;color:var(--red);margin-top:10px;">Something went wrong. Please call us on 0482 097 182.</p>
+        <p class="modal-note" id="c-error" style="display:none;color:var(--red);margin-top:10px;">Something went wrong. Please call us on <a href="tel:+61482097182" class="tel-link">0482 097 182</a>.</p>
       </form>
     </div>
 
@@ -2173,7 +2182,7 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
       <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. You talk to the mechanic, not an advisor.</p>
     </div>
     <div class="footer-col">

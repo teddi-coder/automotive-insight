@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Automotive Insight | Shenton Park Perth</title>
-  <meta name="description" content="Contact Automotive Insight. 206A Stubbs Terrace, Shenton Park WA. Call 0482 097 182. Mon–Fri 7:30–5pm, Sat 8–12pm.">
+  <meta name="description" content="Contact Automotive Insight. 206A Stubbs Terrace, Shenton Park WA. Call <a href="tel:+61482097182" class="tel-link">0482 097 182</a>. Mon–Fri 7:30–5pm, Sat 8–12pm.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
@@ -184,7 +184,10 @@
       .field-row { grid-template-columns: 1fr; }
       .contact-page-inner { padding: 0 24px; }
     }
-  </style>
+      h1 .line, h2 .line { display: block; }
+        .tel-link { color: inherit; text-decoration: none; white-space: nowrap; }
+    .tel-link:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
 
@@ -216,7 +219,7 @@
         </div>
         <div class="form-submit"><button type="submit" class="btn btn-red" id="m-submit">Request a booking</button></div>
         <p class="modal-note" id="m-success" style="display:none;color:#2a7a2a;font-weight:700;">Booking request received — we'll confirm within one business day.</p>
-        <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on 0482 097 182.</p>
+        <p class="modal-note" id="m-error" style="display:none;color:var(--red);">Something went wrong. Please call us on <a href="tel:+61482097182" class="tel-link">0482 097 182</a>.</p>
         <p class="modal-phone-fallback">Prefer to call? <a href="tel:0482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
       </form>
     </div>
@@ -227,7 +230,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="Automotive Insight">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
     </a>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
@@ -292,7 +295,10 @@
       <span class="current">Contact</span>
     </nav>
     <p class="page-kicker">Get in touch</p>
-    <h1 class="page-headline">Come in and<br>say <em>hello.</em></h1>
+    <h1 class="page-headline">
+  <span class="line">Come in and</span>
+  <span class="line">say <em>hello.</em></span>
+</h1>
     <p class="page-tagline">206A Stubbs Terrace, Shenton Park. We're easy to find, easy to talk to, and won't keep you waiting.</p>
   </div>
   <div class="page-hero-ghost" aria-hidden="true">HI</div>
@@ -354,7 +360,7 @@
         </div>
         <div class="form-submit"><button type="submit" class="btn btn-red" id="c-submit">Request a booking</button></div>
         <p class="modal-note" id="c-success" style="display:none;color:#2a7a2a;font-weight:700;margin-top:10px;">Booking request received — we'll confirm within one business day.</p>
-        <p class="modal-note" id="c-error" style="display:none;color:var(--red);margin-top:10px;">Something went wrong. Please call us on 0482 097 182.</p>
+        <p class="modal-note" id="c-error" style="display:none;color:var(--red);margin-top:10px;">Something went wrong. Please call us on <a href="tel:+61482097182" class="tel-link">0482 097 182</a>.</p>
       </form>
     </div>
   </div>
@@ -364,7 +370,7 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight">
+      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
       <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. You talk to the mechanic, not an advisor.</p>
     </div>
     <div class="footer-col">
