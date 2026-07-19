@@ -84,7 +84,7 @@
       justify-content: space-between;
       gap: 32px;
     }
-    .nav-logo img { height: 36px; }
+    .nav-logo img { height: 36px; width: auto; }
     .nav-links {
       display: flex;
       list-style: none;
@@ -602,7 +602,7 @@
        EV, Dark, full-width editorial
     ════════════════════════════════════════ */
     .ev {
-      background: #141c2b;
+      background: var(--dark);
       padding: 96px 0 0;
       overflow: hidden;
     }
@@ -951,7 +951,7 @@
        REVIEW, Dark, centered editorial quote
     ════════════════════════════════════════ */
     .review {
-      background: #1a1a2e;
+      background: var(--dark);
       padding: 96px 48px;
       position: relative;
       overflow: hidden;
@@ -1236,7 +1236,7 @@
       margin-bottom: 48px;
     }
 
-    .footer-brand img { height: 32px; margin-bottom: 16px; }
+    .footer-brand img { height: 32px; width: auto; margin-bottom: 16px; }
 
     .footer-brand p {
       font-size: 13px;
@@ -1264,6 +1264,18 @@
     }
     .footer-col ul a:hover { color: var(--white); }
 
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .footer-links a:hover { color: var(--gold); }
     .footer-bottom {
       max-width: 1440px;
       margin: 0 auto;
@@ -1529,6 +1541,7 @@
         clip-path: none;
         flex-shrink: 0;
       }
+      .hero-photo img { object-position: center 30%; }
       .hero-ghost { display: none; }
       /* Other sections */
       .ev-text, .review, .book, .footer-grid, .footer-bottom { padding-left: 24px; padding-right: 24px; }
@@ -1536,8 +1549,8 @@
       .about-content { padding: 56px 24px 48px; }
       .about-photo-zone { min-height: clamp(260px, 60vw, 420px); height: auto; }
       .contact-inner, .services-header-row, .services-foot { padding-left: 24px; padding-right: 24px; }
-      .svc-name-col { padding-left: 24px; }
-      .svc-desc-col { padding-right: 24px; }
+      .svc-name-col { padding: 24px 24px 12px; }
+      .svc-desc-col { padding: 0 24px 24px; border-right: none; }
       .nav-links, .nav-cta { display: none; }
       .nav-toggle { display: flex; }
       .book-inner { flex-direction: column; align-items: flex-start; }
@@ -1591,12 +1604,6 @@
       "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
       "opens": "07:30",
       "closes": "17:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Saturday",
-      "opens": "08:00",
-      "closes": "12:00"
     }
   ],
   "priceRange": "$$",
@@ -1661,7 +1668,7 @@
               <input type="text" id="m-name" placeholder="Full name" required autocomplete="name">
             </div>
             <div class="field">
-              <label for="m-phone">Phone <span aria-hidden="true">*</span></label>
+              <label for="m-phone">Phone / SMS <span aria-hidden="true">*</span></label>
               <input type="tel" id="m-phone" placeholder="0400 000 000" required autocomplete="tel">
             </div>
           </div>
@@ -1672,7 +1679,7 @@
           <div class="form-submit">
             <button type="button" id="m-next-step" class="btn btn-red">Next — vehicle details →</button>
           </div>
-          <p class="modal-phone-fallback">Prefer to call? <a href="tel:+61482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
+          <p class="modal-phone-fallback">Prefer to call or SMS? <a href="tel:+61482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30am–5pm</p>
         </div>
 
         <!-- STEP 2: Vehicle + service -->
@@ -1737,7 +1744,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="Automotive Insight">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
+      <picture><source srcset="/img/logo.webp" type="image/webp"><img src="/img/logo.png" alt="Automotive Insight" width="400" height="400" loading="lazy" decoding="async"></picture>
     </a>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
@@ -1820,15 +1827,13 @@
     <div class="hero-foot">
       <div class="hero-ctas">
         <button class="btn btn-red" onclick="openModal()">Book a service</button>
-        <a href="tel:0482097182" class="btn btn-ghost">0482 097 182</a>
+        <a href="tel:0482097182" class="btn btn-ghost">Call or SMS 0482 097 182</a>
       </div>
       <p class="hero-no-ob">No obligation until you've heard the diagnosis.</p>
       <div class="hero-meta-strip">
         <span>206A Stubbs Terrace, Shenton Park</span>
         <span class="hm-dot"></span>
-        <span>Mon–Fri 7:30–5pm</span>
-        <span class="hm-dot"></span>
-        <span>Sat 8–12pm</span>
+        <span>Mon–Fri 7:30am–5pm</span>
         <span class="hm-dot"></span>
         <a href="tel:0482097182" style="color:inherit;text-decoration:none;font-size:11px;font-weight:600;">0482 097 182</a>
       </div>
@@ -1922,7 +1927,7 @@
       <h2 id="services-h">What we do</h2>
     </div>
     <div style="padding: 32px 72px 0; border-bottom: 1px solid var(--border);">
-      <p style="font-size:15px;color:var(--muted);line-height:1.7;max-width:640px;padding-bottom:32px;">Specialist servicing for European marques, hybrids, and EVs, and everything in between. One workshop, no second tier.</p>
+      <p style="font-size:15px;color:var(--muted);line-height:1.7;max-width:640px;padding-bottom:32px;">Premium servicing for European marques, hybrids, and EVs, and everything in between. One workshop, no second tier.</p>
     </div>
 
     <div class="svc">
@@ -2004,6 +2009,42 @@
         </div>
         <div class="svc-desc-col">
           <span class="svc-desc">Hybrid and EV work that most independents won't touch. Dealerships charge you extra to look at it. We've been doing this since before most dealerships trained for it.</span>
+          <span class="svc-arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="svc">
+      <a href="/services/">
+        <div class="svc-name-col">
+          <div class="svc-name">Air Conditioning</div>
+        </div>
+        <div class="svc-desc-col">
+          <span class="svc-desc">Regas, leak detection, and full A/C system servicing. Keep your cabin comfortable year-round — we service all makes and models.</span>
+          <span class="svc-arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="svc">
+      <a href="/services/">
+        <div class="svc-name-col">
+          <div class="svc-name">DOT Vehicle Inspections</div>
+        </div>
+        <div class="svc-desc-col">
+          <span class="svc-desc">Authorised DOT Inspection Station. We carry out vehicle inspections for roadworthiness and licensing requirements across all vehicle classes.</span>
+          <span class="svc-arrow">→</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="svc">
+      <a href="/services/">
+        <div class="svc-name-col">
+          <div class="svc-name">Tyres</div>
+        </div>
+        <div class="svc-desc-col">
+          <span class="svc-desc">Supply and fit across a wide range of brands and sizes. We'll advise on the right tyre for your vehicle and driving style — not just what's in stock.</span>
           <span class="svc-arrow">→</span>
         </div>
       </a>
@@ -2228,7 +2269,7 @@
         </div>
         <div class="detail">
           <span class="dk">Hours</span>
-          <span class="dv" style="font-weight:400;font-size:12px;color:var(--muted)">Mon–Fri 7:30–5:00 &nbsp;·&nbsp; Sat 8:00–12:00</span>
+          <span class="dv" style="font-weight:400;font-size:12px;color:var(--muted)">Mon–Fri 7:30am–5pm<br><span style="font-size:11px;">Closed every second Monday — please call ahead.</span></span>
         </div>
       </div>
     </div>
@@ -2244,7 +2285,7 @@
             <input type="text" id="c-name" placeholder="Full name" required autocomplete="name">
           </div>
           <div class="field">
-            <label for="c-phone">Phone *</label>
+            <label for="c-phone">Phone / SMS *</label>
             <input type="tel" id="c-phone" placeholder="0400 000 000" required autocomplete="tel">
           </div>
         </div>
@@ -2310,8 +2351,8 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
-      <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. You talk to the mechanic, not an advisor.</p>
+      <picture><source srcset="/img/logo.webp" type="image/webp"><img src="/img/logo.png" alt="Automotive Insight" width="400" height="400" loading="lazy" decoding="async"></picture>
+      <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. Your Service Advisor is your dedicated point of contact.</p>
     </div>
     <div class="footer-col">
       <h5>Services</h5>
@@ -2347,6 +2388,10 @@
 
   <div class="footer-bottom">
     <span class="footer-legal">© 2026 Automotive Insight &nbsp;·&nbsp; 206A Stubbs Terrace, Shenton Park WA 6008</span>
+    <div class="footer-links">
+      <a href="https://automotiveinsight.com.au/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
+      <a href="https://automotiveinsight.com.au/terms-and-conditions-3/" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+    </div>
     <div class="footer-social">
       <a href="https://www.facebook.com/automotive.insight.perth" target="_blank" rel="noopener">Facebook</a>
       <a href="https://www.instagram.com/automotive_insight_perth/" target="_blank" rel="noopener">Instagram</a>

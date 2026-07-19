@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Automotive Insight | Shenton Park Perth</title>
-  <meta name="description" content="Contact Automotive Insight. 206A Stubbs Terrace, Shenton Park WA. Call <a href="tel:+61482097182" class="tel-link">0482 097 182</a>. Mon–Fri 7:30–5pm, Sat 8–12pm.">
+  <meta name="description" content="Contact Automotive Insight. 206A Stubbs Terrace, Shenton Park WA. Call or SMS 0482 097 182. Mon–Fri 7:30am–5pm.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
 
     .nav { position: fixed; inset: 0 0 auto; z-index: 200; background: var(--dark); }
     .nav-inner { max-width: 1440px; margin: 0 auto; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-    .nav-logo img { height: 36px; }
+    .nav-logo img { height: 36px; width: auto; }
     .nav-links { display: flex; list-style: none; gap: 24px; align-items: center; }
     .nav-links a { font-size: 9px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.5); transition: color 0.12s; }
     .nav-links a:hover { color: var(--gold); }
@@ -127,12 +127,24 @@
 
     .footer { background: var(--dark); padding: 56px 0 32px; }
     .footer-grid { max-width: 1440px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; margin-bottom: 48px; }
-    .footer-brand img { height: 32px; margin-bottom: 16px; }
+    .footer-brand img { height: 32px; width: auto; margin-bottom: 16px; }
     .footer-brand p { font-size: 12px; color: rgba(255,255,255,0.28); line-height: 1.7; max-width: 220px; }
     .footer-col h5 { font-size: 8px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .footer-col ul a { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.3); transition: color 0.12s; }
     .footer-col ul a:hover { color: var(--white); }
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .footer-links a:hover { color: var(--gold); }
     .footer-bottom { max-width: 1440px; margin: 0 auto; padding: 24px 48px 0; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
     .footer-legal { font-size: 10px; color: rgba(255,255,255,0.16); }
     .footer-social { display: flex; gap: 24px; }
@@ -180,7 +192,19 @@
       .nav-toggle { display: flex; }
       .page-hero-inner { padding: 56px 24px 64px; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; }
-      .footer-bottom { padding: 24px 24px 0; }
+      .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { padding: 24px 24px 0; }
       .field-row { grid-template-columns: 1fr; }
       .contact-page-inner { padding: 0 24px; }
     }
@@ -226,12 +250,6 @@
       "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
       "opens": "07:30",
       "closes": "17:00"
-    },
-    {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": "Saturday",
-      "opens": "08:00",
-      "closes": "12:00"
     }
   ],
   "priceRange": "$$",
@@ -294,7 +312,7 @@
               <input type="text" id="m-name" placeholder="Full name" required autocomplete="name">
             </div>
             <div class="field">
-              <label for="m-phone">Phone <span aria-hidden="true">*</span></label>
+              <label for="m-phone">Phone / SMS <span aria-hidden="true">*</span></label>
               <input type="tel" id="m-phone" placeholder="0400 000 000" required autocomplete="tel">
             </div>
           </div>
@@ -305,7 +323,7 @@
           <div class="form-submit">
             <button type="button" id="m-next-step" class="btn btn-red">Next — vehicle details →</button>
           </div>
-          <p class="modal-phone-fallback">Prefer to call? <a href="tel:+61482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30–5pm, Sat 8–12pm</p>
+          <p class="modal-phone-fallback">Prefer to call or SMS? <a href="tel:+61482097182">0482 097 182</a> &nbsp;·&nbsp; Mon–Fri 7:30am–5pm</p>
         </div>
 
         <!-- STEP 2: Vehicle + service -->
@@ -368,7 +386,7 @@
 <nav class="nav">
   <div class="nav-inner">
     <a href="/" class="nav-logo" aria-label="Automotive Insight">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
+      <picture><source srcset="/img/logo.webp" type="image/webp"><img src="/img/logo.png" alt="Automotive Insight" width="400" height="400" loading="lazy" decoding="async"></picture>
     </a>
     <ul class="nav-links">
       <li><a href="/">Home</a></li>
@@ -461,7 +479,7 @@
           <a href="https://maps.google.com/?q=206A+Stubbs+Terrace+Shenton+Park+WA+6008" target="_blank" rel="noopener" class="dv">206A Stubbs Terrace, Shenton Park WA 6008</a>
         </div>
         <div class="detail">
-          <span class="dk">Phone</span>
+          <span class="dk">Phone / SMS</span>
           <a href="tel:0482097182" class="dv">0482 097 182</a>
         </div>
         <div class="detail">
@@ -470,7 +488,7 @@
         </div>
         <div class="detail">
           <span class="dk">Hours</span>
-          <span class="dv">Mon–Fri 7:30am – 5:00pm &nbsp;·&nbsp; Sat 8:00am – 12:00pm</span>
+          <span class="dv">Mon–Fri 7:30am – 5:00pm<br><small style="font-size:0.85em;opacity:0.75;">Closed every second Monday — please call ahead.</small></span>
         </div>
       </div>
     </div>
@@ -481,7 +499,7 @@
       <form id="contactForm" novalidate>
         <div class="field-row">
           <div class="field"><label for="c-name">Your name *</label><input type="text" id="c-name" placeholder="Full name" required autocomplete="name"></div>
-          <div class="field"><label for="c-phone">Phone *</label><input type="tel" id="c-phone" placeholder="0400 000 000" required autocomplete="tel"></div>
+          <div class="field"><label for="c-phone">Phone / SMS *</label><input type="tel" id="c-phone" placeholder="0400 000 000" required autocomplete="tel"></div>
         </div>
         <div class="field"><label for="c-email">Email *</label><input type="email" id="c-email" placeholder="you@email.com" required autocomplete="email"></div>
         <div class="field-row">
@@ -508,8 +526,8 @@
 <footer class="footer">
   <div class="footer-grid">
     <div class="footer-brand">
-      <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy" decoding="async">
-      <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. You talk to the mechanic, not an advisor.</p>
+      <picture><source srcset="/img/logo.webp" type="image/webp"><img src="/img/logo.png" alt="Automotive Insight" width="400" height="400" loading="lazy" decoding="async"></picture>
+      <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. Your Service Advisor is your dedicated point of contact.</p>
     </div>
     <div class="footer-col">
       <h5>Services</h5>
@@ -544,6 +562,10 @@
   </div>
   <div class="footer-bottom">
     <span class="footer-legal">© 2026 Automotive Insight &nbsp;·&nbsp; 206A Stubbs Terrace, Shenton Park WA 6008</span>
+    <div class="footer-links">
+      <a href="https://automotiveinsight.com.au/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
+      <a href="https://automotiveinsight.com.au/terms-and-conditions-3/" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+    </div>
     <div class="footer-social">
       <a href="https://www.facebook.com/automotive.insight.perth" target="_blank" rel="noopener">Facebook</a>
       <a href="https://www.instagram.com/automotive_insight_perth/" target="_blank" rel="noopener">Instagram</a>

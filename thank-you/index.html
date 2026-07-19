@@ -38,7 +38,7 @@
     /* NAV */
     .nav { position: fixed; inset: 0 0 auto; z-index: 200; background: var(--dark); }
     .nav-inner { max-width: 1440px; margin: 0 auto; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-    .nav-logo img { height: 36px; }
+    .nav-logo img { height: 36px; width: auto; }
     .nav-links { display: flex; list-style: none; gap: 24px; align-items: center; }
     .nav-links a { font-size: 9px; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: rgba(255,255,255,0.5); transition: color 0.12s; }
     .nav-links a:hover { color: var(--gold); }
@@ -87,12 +87,24 @@
     /* FOOTER */
     .footer { background: var(--dark); padding: 56px 0 32px; }
     .footer-grid { max-width: 1440px; margin: 0 auto; padding: 0 48px; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 56px; margin-bottom: 48px; }
-    .footer-brand img { height: 32px; margin-bottom: 16px; }
+    .footer-brand img { height: 32px; width: auto; margin-bottom: 16px; }
     .footer-brand p { font-size: 12px; color: rgba(255,255,255,0.28); line-height: 1.7; max-width: 220px; }
     .footer-col h5 { font-size: 8px; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .footer-col ul a { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.3); transition: color 0.12s; }
     .footer-col ul a:hover { color: var(--white); }
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .footer-links a:hover { color: var(--gold); }
     .footer-bottom { max-width: 1440px; margin: 0 auto; padding: 24px 48px 0; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
     .footer-legal { font-size: 10px; color: rgba(255,255,255,0.16); }
     .footer-social { display: flex; gap: 24px; }
@@ -106,7 +118,19 @@
       .ty-ctas { flex-direction: column; align-items: stretch; }
       .ty-ctas .btn { text-align: center; }
       .footer-grid { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; }
-      .footer-bottom { padding: 24px 24px 0; }
+      .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 11px;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color 0.12s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { padding: 24px 24px 0; }
     }
   </style>
 </head>
@@ -219,7 +243,7 @@
   <div class="footer-grid">
     <div class="footer-brand">
       <img src="https://automotiveinsight.com.au/wp-content/uploads/2025/10/cropped-AI-Logo-221x74.jpg" alt="Automotive Insight" width="221" height="74" loading="lazy">
-      <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. You talk to the mechanic, not an advisor.</p>
+      <p>European, hybrid, and EV specialists in Shenton Park. We've been here since 1993. Your Service Advisor is your dedicated point of contact.</p>
     </div>
     <div class="footer-col">
       <h5>Services</h5>
@@ -254,6 +278,10 @@
   </div>
   <div class="footer-bottom">
     <span class="footer-legal">© 2026 Automotive Insight &nbsp;·&nbsp; 206A Stubbs Terrace, Shenton Park WA 6008</span>
+    <div class="footer-links">
+      <a href="https://automotiveinsight.com.au/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
+      <a href="https://automotiveinsight.com.au/terms-and-conditions-3/" target="_blank" rel="noopener">Terms &amp; Conditions</a>
+    </div>
     <div class="footer-social">
       <a href="https://www.facebook.com/automotive.insight.perth" target="_blank" rel="noopener">Facebook</a>
       <a href="https://www.instagram.com/automotive_insight_perth/" target="_blank" rel="noopener">Instagram</a>
